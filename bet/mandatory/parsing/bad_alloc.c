@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:24:10 by cahaik            #+#    #+#             */
-/*   Updated: 2025/02/23 12:41:16 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:43:55 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void bad_alloc(t_map *map, int flag)
 {
-	if (flag == 1)
-		free_maps(map, 0);
+	if (!map->cmap)
+	{
+		if (map && map->id) 
+			free_linked_list(map->id, 0);
+	}
 	write(2, "Error\n**Allocation Failed**\n", 29);
 	close(map->fd);
 	exit (1);	

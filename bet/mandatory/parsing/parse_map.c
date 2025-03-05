@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:49:29 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/02 13:46:28 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:43:27 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void parse_map(char *filename, t_map* map)
 	
 	fd_check(filename, map, 1);
 	map->cmap = malloc(sizeof(char *) * (map->row + 1));
-	if (!map->cmap)
-		bad_alloc(map, 1);
+	bad_alloc(map);
 	while ((line = get_next_line(map->fd)))
 	{
 		len = ft_strlen(line);

@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/02/25 15:31:26 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:17:30 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ typedef struct s_map
 
 void parse(char *mapname);
 int parse_line(char *line, int row, int rw);
-void bad_alloc(t_map* map, int flag);
+void bad_alloc(t_map* map);
 void free_maps(t_map *map, int flag);
 void fd_check(char* name, t_map *m, int flag);
-void invalid_map(char *message, t_map *map, int flag);
+void invalid_map(char *message, t_map *map, char **s_numbers, t_identifier *new);
 void parse_textures(char *filename, t_map* map);
 void parse_map(char *filename, t_map* map);
 void p_directions(t_map* map, int n_players);
@@ -62,6 +62,8 @@ t_identifier	*cub_lstnew();
 void free_splited(char **splited);
 int ft_strcmp(char *dest, char *src);
 int cub_atoi(char *str, int *err);
-void invalid_map_textures(char *message, t_map *map, char** comma_split, char **splited);
 void parse_textures_util(t_map *map);
 #endif
+
+
+//max height and width of the window

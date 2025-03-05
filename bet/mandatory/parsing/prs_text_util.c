@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 08:14:57 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/02 13:26:55 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:33:57 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void colors_(t_map *map, t_identifier *new)
 	while (split_numbers && split_numbers[i])
 		i++;
 	if (i != 3)
-		exit(1); //invalid_map_textures(" informations(numbers are more or less than 3)", map, split_numbers, splited);
-	new->colors = malloc(sizeof(int) * 3);
+		invalid_map(" informations(numbers are more or less than 3)", map, split_numbers, new);
+	new->colors = malloc(sizeof(int) * 3);// allocation check
 	i--;
 	while (i >= 0 && split_numbers[i])
 	{
@@ -45,7 +45,7 @@ void colors_(t_map *map, t_identifier *new)
 		if (err == 0 && (range >= 0 && range <= 255))
 			new->colors[i] = range;
 		else
-			exit(1); //invalid_map_textures(" informations(numbers not whithin range required)", map, split_numbers, splited);
+			invalid_map(" informations(numbers not whithin range required)", map, split_numbers, new);
 		i--;
 	}
 	free_splited(split_numbers);
@@ -68,7 +68,7 @@ void parse_textures_util(t_map *map)
 			!ft_strcmp("C", map->splited[0])) && !comp_dir(map->id, map->splited[0]))
 		colors_(map, new);
 	else
-		exit(1); //invalid_map_textures(" informations(numbers not whithin range required)", map, split_numbers, splited);
+		invalid_map(" informations(numbers not whithin range required)", map, NULL, new);
 	cub_lstadd_back(&map->id, new);
 	map->row++;
 }

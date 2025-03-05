@@ -6,13 +6,13 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:56:27 by cahaik            #+#    #+#             */
-/*   Updated: 2025/02/24 13:43:18 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/05 14:32:27 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void free_linked_list(t_identifier *id)
+void free_linked_list(t_identifier *id, int flag)
 {
 	t_identifier *new_head = id;
 	
@@ -24,31 +24,33 @@ void free_linked_list(t_identifier *id)
 				free(id->path);
 			if (id->colors)
 				free(id->colors);
+			if (flag == 1)
+			{
+				free(id);
+				return ;
+			}
 			id = id->next;
 		}
 		if (new_head)
 			free(new_head);
 }
 
-void invalid_map_textures(char *message, t_map *map, char** comma_split, char **splited)
+void invalid_map(char *message, t_map *map, char **s_numbers, t_identifier *new)
 {
-	char *concat = strcat("Error\nInvalid Map :", message);
-	write (2, concat, ft_strlen(concat));//need to create strcat
-	free_splited(splited);
-	free_splited(comma_split);
-	free_linked_list(map->id);
-	exit(1);
-}
-
-void invalid_map(char *message, t_map *map, int flag)
-{
-	char *concat = strcat("Error\nInvalid Map :", message);
-	write(2, concat, strlen(concat));
-	if (flag == 1)
-		free_maps(map, 1);
-	else
-		free_maps(map, 0);
+	if (map)
+	{
+		if (map->splited)
+			free_splited(map->splited);
+		if (s_numbers)
+			free_splited(s_numbers);
+		if (map->id) 
+			free_linked_list(map->id, 0);
+	}
+	if (new)
+		free_linked_list(new, 1);
+	write(2, "Error\nInvalid Map :", 20);
+	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
 	close(map->fd);
-	write(1, "\n", 1);
 	exit(1);
 }
