@@ -1,0 +1,1 @@
+make all && clear && ./cub3D map.cub
