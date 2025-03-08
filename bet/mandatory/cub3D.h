@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/05 15:17:30 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/08 15:17:46 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void free_splited(char **splited);
 int ft_strcmp(char *dest, char *src);
 int cub_atoi(char *str, int *err);
 void parse_textures_util(t_map *map);
+void free_linked_list(t_identifier *id, int flag);
 #endif
 
 
