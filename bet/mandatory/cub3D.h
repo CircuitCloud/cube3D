@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/08 15:17:46 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/12 13:09:02 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
+#define TILESIZE 32
+// #define LINES 0x5FFBF1
+// #define COLS 18
+// #define	WIDTH (COLS * TILESIZE)
+// #define HEIGHT (LINES * TILESIZE)
+#define FOV (60 * (M_PI / 180))
+#define RES 5
+#define RAYS_NUMBER (WIDTH / RES)
+
 
 typedef struct s_identifier
 {
@@ -35,11 +46,23 @@ typedef struct s_player
 	int x;
 	int y;
 	char direction;
+	int	move_speed;
+	int	turn_direc;
+	int	walk_direc;
+	int	steeps;
+	double	rot_angle;
+	int	strafe_direc;
+
 } t_player;
 
 typedef struct s_map
 {
-	int fd;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	int	width;
+	int	height;
+
+	int	fd;
 	size_t row;
 	char **cmap;
 	char **splited;
@@ -48,7 +71,7 @@ typedef struct s_map
 } t_map;
 
 
-void parse(char *mapname);
+t_map parse(char *mapname);
 int parse_line(char *line, int row, int rw);
 void bad_alloc(t_map* map);
 void free_maps(t_map *map, int flag);

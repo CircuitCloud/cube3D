@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:01:00 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/02 12:35:18 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/09 21:45:45 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void parse(char *mapname)
+t_map parse(char *mapname)//intead of void -> t_map return value
 {
 	t_map map;
 	int n_players = 0;
@@ -21,4 +21,5 @@ void parse(char *mapname)
 	parse_textures(mapname ,&map);
 	parse_map(mapname, &map);
 	p_directions(&map, n_players);
+	return (map);
 }
