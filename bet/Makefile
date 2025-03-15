@@ -8,11 +8,11 @@ LIBFT = libft/libft.a
 
 INCLUDES = MLX/build/libmlx42.a  MLX/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
-SRC = mandatory/main.c mandatory/parsing/parse.c mandatory/parsing/bad_alloc.c mandatory/parsing/fd_check.c \
-		mandatory/parsing/free_maps.c mandatory/parsing/invalid_map.c mandatory/parsing/parse_line.c mandatory/parsing/parse_map.c \
-		mandatory/parsing/parse_textures.c mandatory/parsing/linked_list.c mandatory/parsing/p_directions.c getnextline/get_next_line_utils.c \
-		getnextline/get_next_line.c mandatory/parsing/free_split.c mandatory/parsing/ft_strcmp.c mandatory/parsing/prs_text_util.c\
-		mandatory/parsing/cub_atoi.c\
+SRC = srcs/main.c srcs/parsing/parse.c srcs/parsing/bad_alloc.c srcs/parsing/fd_check.c \
+		srcs/parsing/free_maps.c srcs/parsing/invalid_map.c srcs/parsing/parse_line.c srcs/parsing/parse_map.c \
+		srcs/parsing/parse_textures.c srcs/parsing/linked_list.c srcs/parsing/p_directions.c getnextline/get_next_line_utils.c \
+		getnextline/get_next_line.c srcs/parsing/free_split.c srcs/parsing/ft_strcmp.c srcs/parsing/prs_text_util.c\
+		srcs/parsing/cub_atoi.c srcs/player.c srcs/draw_utils.c
  
 OBJ = $(SRC:.c=.o)
 
@@ -25,7 +25,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT)
  
-%.o : %.c mandatory/cub3D.h  getnextline/get_next_line.h
+%.o : %.c srcs/cub3D.h  getnextline/get_next_line.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

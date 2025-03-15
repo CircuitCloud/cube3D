@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/12 13:09:02 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/15 10:18:29 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_identifier
 
 typedef struct s_player
 {
-	int x;
-	int y;
+	double x;
+	double y;
 	char direction;
 	int	move_speed;
 	int	turn_direc;
@@ -87,6 +87,15 @@ int ft_strcmp(char *dest, char *src);
 int cub_atoi(char *str, int *err);
 void parse_textures_util(t_map *map);
 void free_linked_list(t_identifier *id, int flag);
+
+
+void update_player_p(mlx_key_data_t key, void *param);
+void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
+void    draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
+void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
+void	draw_map(t_map *map);
+void draw_player(t_map *map, mlx_image_t *img, int f);
+int	find_wall(t_map map, int x, int y);
 #endif
 
 
