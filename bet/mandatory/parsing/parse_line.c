@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:54:23 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/02 13:45:26 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/13 13:10:33 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,31 @@
 
 int	check_character(char c, int len, int i)
 {
-	if ((i == 0 || i == len - 2) && (c != '1' && c != ' '))
+	if ((i == 0 || i == len - 1) && (c != '1' && c != ' ' && c != '\t'))
 		return (1);
-	else if (c != '1' && c != ' ' && c != '0' && c != 'N'
+	else if (c != '1' && c != ' ' && c!= '\t' && c != '0' && c != 'N'
 		&& c != 'S' && c != 'W' && c != 'E')
 		return (1);
 	return (0);
 }
 
-int	parse_line(char *line, int row, int rw)
+int	parse_line(char *line, int row, int rw, int len)
 {
 	int		i;
-	int		len;
 
 	i = 0;
-	len = ft_strlen(line);
-	if (rw == 0 || rw == row)
+	if (rw == 0 || rw == row -1)
 	{
-		while (i < len - 1)
+		while (i < len && line[i])
 		{
-			if (line[i] != ' ' && line[i] != '1')
+			if (line[i] != ' ' && line[i] != '\t' && line[i] != '1')
 				return (1);
 			i++;
 		}
 	}
 	else
 	{
-		while (i < len - 1)
+		while (i < len && line[i])
 		{
 			if (check_character(line[i], len, i))
 				return (1);
