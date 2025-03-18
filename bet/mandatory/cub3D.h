@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/17 21:49:44 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:56:18 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color)
 void    draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
 void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
 void	draw_map(t_map *map);
-void draw_player(t_map *map, mlx_image_t *img, int f);
+void draw_player(t_map *map, mlx_image_t *img);
 int find_wall(t_map *map, double x, double y);
 #endif
 
