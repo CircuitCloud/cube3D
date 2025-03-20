@@ -12,7 +12,7 @@ SRC = mandatory/main.c mandatory/parsing/parse.c mandatory/parsing/bad_alloc.c m
 		mandatory/parsing/free_maps.c mandatory/parsing/invalid_map.c mandatory/parsing/parse_line.c mandatory/parsing/parse_map.c \
 		mandatory/parsing/parse_textures.c mandatory/parsing/linked_list.c mandatory/parsing/p_directions.c getnextline/get_next_line_utils.c \
 		getnextline/get_next_line.c mandatory/parsing/free_split.c mandatory/parsing/ft_strcmp.c mandatory/parsing/prs_text_util.c\
-		mandatory/parsing/cub_atoi.c mandatory/parsing/convert_space.c mandatory/player_movements/player.c mandatory/player_movements/draw_utils.c mandatory/raycast/render_rays.c\
+		mandatory/parsing/cub_atoi.c mandatory/parsing/convert_space.c mandatory/2D_map/player.c mandatory/2D_map/draw_utils.c mandatory/raycast/render_rays.c\
 		mandatory/raycast/caster.c mandatory/raycast/horizotal.c mandatory/raycast/vertical.c\
 
 OBJ = $(SRC:.c=.o)

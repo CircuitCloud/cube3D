@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/18 19:54:53 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/20 02:44:46 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void draw_player(t_map *map, mlx_image_t *img)
 
 void	handle_key(mlx_key_data_t key, t_map *map)
 {
+	map->player.turn_direc = 0;
+	map->player.walk_direc = 0;
+	map->player.strafe_direc = 0;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 		map->player.turn_direc = -1;
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))

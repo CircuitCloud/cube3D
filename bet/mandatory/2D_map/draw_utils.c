@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/17 21:28:58 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:08:22 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color)
 	
 	i = 0;
 	j = 0;
-
 	while (i < TILESIZE - 1)
 	{
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/18 19:56:38 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/20 02:37:22 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int main(int ac, char **av)
 	map.mlx = mlx;
 	map.img = img;
 	draw_map(&map);
-	// hadu initializations...
-	//------------------------------
 	map.player.move_x = map.player.x * TILESIZE + TILESIZE / 2;
 	map.player.move_y = map.player.y * TILESIZE + TILESIZE / 2;
 	if (map.player.direction == 'N')
