@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/18 23:08:22 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:35:45 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,17 +122,17 @@ void	draw_map(t_map *map)
 		x = 0;
 		// printf("%d\n", map.player.x);
 		// printf("%d\n", map.player.y);
-        while (x < ft_strlen(map->cmap[0]) - 1)
+        while (x < ft_strlen(map->cmap[y]) - 1)
         {
 			px = x * TILESIZE;
 			py = y * TILESIZE;
-			if (map->cmap[y][x] == '1')
+			if (map && y < map->row && map->cmap[y] && map->cmap[y][x] == '1')
 			{
 				//  printf("drawing wall at (%d, %d)\n", px, py);
-            	draw_tile_pixels(map->img, px, py, 0xFFFFFFFF);
+            	// draw_tile_pixels(map->img, px, py, 0xFFFFFFFF);
 			}
 			else if (map->cmap[y][x] == '0' || map->cmap[y][x] == map->cmap[map->player.y][map->player.x])
-            	draw_tile_pixels(map->img, px, py, 0xFFB347);
+            	// draw_tile_pixels(map->img, px, py, 0xFFB347);
 			// commenteta hitax manhtajux n3adelula xi color u
 			//zidt player mot3u ytlewn nhal 0
 			// else

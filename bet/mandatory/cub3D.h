@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/18 19:56:18 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:45:42 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 #define	WIDTH 1024
 #define HEIGHT 1024
 #define FOV (60 * (M_PI / 180))
-#define RES 4
-#define RAYS_NUMBER (4000) // width not 1024 and round it
+#define RES 5
+#define RAYS_NUMBER (1024) // width not 1024 and round it
 #define ANGLE (FOV / (RAYS_NUMBER - 1))
 
 
@@ -68,7 +68,7 @@ typedef struct s_ray
 	int up;
 	int right;
 	int left;
-	int distance;
+	double distance;
 	int x_h_wall;
 	int y_h_wall;
 	int x_v_wall;
@@ -115,6 +115,7 @@ double horizontal_distance(t_map *map, t_ray ray);
 void ray_look_direction(double *angle, t_ray *ray);
 double vertical_distance(t_map *map, t_ray ray);
 int wall_existance(t_map *map, double x, double y);
+void render_wall(t_map *map, t_ray ray, int x);
 
 void update_player_p(mlx_key_data_t key, void *param);
 void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);

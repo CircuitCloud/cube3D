@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/20 02:44:46 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:36:58 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void update_player_p(mlx_key_data_t key, void *param)
 		return;
 	map = (t_map *)param;
 	rotation_speed = 2 * (M_PI / 180);
-	move_speed = 1.5;
+	move_speed = 3;
 	old_x = map->player.move_x;
 	old_y = map->player.move_y;
 	handle_key(key, map);
@@ -95,7 +95,8 @@ void update_player_p(mlx_key_data_t key, void *param)
 	{
 		mlx_delete_image(map->mlx, map->img);
 		map->img = mlx_new_image(map->mlx, map->width, map->height);
-		draw_map(map);
+		// draw_map(map);
+		mlx_image_to_window(map->mlx, map->img, 0, 0);
 		draw_player(map, map->img);
 		set_rays_angle(map);
 	}

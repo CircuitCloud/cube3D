@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/20 02:37:22 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/22 16:36:10 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int main(int ac, char **av)
 	}
 	width = ((ft_strlen(map.cmap[0]) - 1) * TILESIZE);
 	height = (map.row * TILESIZE);
-	map.width =width;
+	map.width = width;
 	map.height = height;
-	mlx = mlx_init(width, height, "9yob3d", 1);
+	mlx = mlx_init( width, height, "9yob3d", 1);
 	if (!mlx)
         return (printf("mlx\n"), 1);
 	img = mlx_new_image(mlx, width, height);
@@ -59,7 +59,8 @@ int main(int ac, char **av)
         return (printf("img\n"), 1);
 	map.mlx = mlx;
 	map.img = img;
-	draw_map(&map);
+	// draw_map(&map);
+	mlx_image_to_window(map.mlx, map.img, 0, 0);
 	map.player.move_x = map.player.x * TILESIZE + TILESIZE / 2;
 	map.player.move_y = map.player.y * TILESIZE + TILESIZE / 2;
 	if (map.player.direction == 'N')
