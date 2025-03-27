@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/17 13:47:21 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/26 00:24:34 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ double vertical_distance(t_map *map, t_ray ray)
 	{
 		wall = wall_existance(map, x, y);
 			if (!wall)
+			{
+				map->texture.vertical_hit_x = x;
+				map->texture.vertical_hit_y = y;
 				return (sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+			}
 		if (!f_point)
 		{
 			if (ray.right)

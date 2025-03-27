@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/22 16:35:45 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/24 07:25:43 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,10 @@ void	draw_map(t_map *map)
 			if (map && y < map->row && map->cmap[y] && map->cmap[y][x] == '1')
 			{
 				//  printf("drawing wall at (%d, %d)\n", px, py);
-            	// draw_tile_pixels(map->img, px, py, 0xFFFFFFFF);
+            	draw_tile_pixels(map->img, px, py, 0xFFFFFFFF);
 			}
 			else if (map->cmap[y][x] == '0' || map->cmap[y][x] == map->cmap[map->player.y][map->player.x])
-            	// draw_tile_pixels(map->img, px, py, 0xFFB347);
+            	draw_tile_pixels(map->img, px, py, 0xFFB347);
 			// commenteta hitax manhtajux n3adelula xi color u
 			//zidt player mot3u ytlewn nhal 0
 			// else

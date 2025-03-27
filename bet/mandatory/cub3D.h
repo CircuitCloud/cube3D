@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/22 15:45:42 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/27 20:50:20 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+// #include "../minilibx_mms_20200219/mlx.h"
 #define TILESIZE 32
 // #define LINES 0x5FFBF1
 // #define COLS 18
@@ -32,8 +32,28 @@
 #define RES 5
 #define RAYS_NUMBER (1024) // width not 1024 and round it
 #define ANGLE (FOV / (RAYS_NUMBER - 1))
+#define NUM_TEXTURES 4
+#define TEXTURE_SIZE 64
+
+#define EAST_TEXTURE 1
+#define WEST_TEXTURE 2
+#define SOUTH_TEXTURE 3
+#define NORTH_TEXTURE 4
 
 
+typedef	struct s_texture
+{
+	mlx_texture_t	*img;
+	uint32_t		*adr;
+	int				width;
+	int				height;
+
+	int	vertical_hit_x;
+	int	vertical_hit_y;
+	
+	int	horizontal_hit_x;
+	int	horizontal_hit_y;
+}	t_texture;
 typedef struct s_identifier
 {
 	char *identifier;
@@ -46,8 +66,8 @@ typedef struct s_player
 {
 	int x;
 	int y;
-	int move_x;
-	int move_y;
+	double move_x;
+	double move_y;
 	char direction;
 	int	move_speed;
 	int	turn_direc;
@@ -73,6 +93,12 @@ typedef struct s_ray
 	int y_h_wall;
 	int x_v_wall;
 	int y_v_wall;
+
+	int	hit_vertical;
+	int	texture;
+	int	texture_x;
+	
+	
 } t_ray;
 
 typedef struct s_map
@@ -81,7 +107,6 @@ typedef struct s_map
 	mlx_image_t	*img;
 	int	width;
 	int	height;
-
 	int	fd;
 	int index;
 	size_t row;
@@ -90,7 +115,10 @@ typedef struct s_map
 	t_ray ray[RAYS_NUMBER];
 	t_identifier *id;
 	t_player player;
-} t_map;
+	// t_texture	texture[NUM_TEXTURES];
+	t_texture	*text_buffer[NUM_TEXTURES];
+	t_texture	texture;
+}	t_map;
 
 
 t_map parse(char *mapname);
@@ -124,6 +152,11 @@ void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
 void	draw_map(t_map *map);
 void draw_player(t_map *map, mlx_image_t *img);
 int find_wall(t_map *map, double x, double y);
+
+void	load_textures(t_map *map);
+int		get_texture_pixel(int **texture_buff, int x, int y, int index);
+void	draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
+
 #endif
 
 

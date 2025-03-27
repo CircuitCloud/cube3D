@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizotal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/17 13:47:28 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/25 23:15:51 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ double horizontal_distance(t_map *map, t_ray ray)
 	{
 		wall = wall_existance(map, x, y);
 		if (!wall)
+		{
+			map->texture.horizontal_hit_x = x;
+			map->texture.horizontal_hit_y = y;
 			return (sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+		}
 		if (!f_point)
 		{
 			if (ray.up)

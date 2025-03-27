@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   caster.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:40:55 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/17 13:11:44 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/25 23:01:02 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double periodic_angle(double angle)
 void ray_look_direction(double *angle, t_ray *ray)
 {
 	double ray_angle;
-	
+
 	ray->down = 0;
 	ray->up = 0;
 	ray->right = 0;

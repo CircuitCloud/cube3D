@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/22 16:36:10 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/26 00:21:20 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3D.h"
 
@@ -36,6 +37,9 @@ int main(int ac, char **av)
 	int x =0 ;
 	int y = 0;
 
+	////
+	// load_textures(&map);
+	///////
 	if (ac == 2)
 	{
 		if (ft_strcmp(".cub", ft_strrchr(av[1], '.')))
@@ -51,7 +55,7 @@ int main(int ac, char **av)
 	height = (map.row * TILESIZE);
 	map.width = width;
 	map.height = height;
-	mlx = mlx_init( width, height, "9yob3d", 1);
+	mlx = mlx_init(width, height, "9yob3d", 1);
 	if (!mlx)
         return (printf("mlx\n"), 1);
 	img = mlx_new_image(mlx, width, height);
@@ -73,6 +77,9 @@ int main(int ac, char **av)
 		map.player.rot_angle = M_PI;
 	draw_player(&map, img);
 	set_rays_angle(&map);
+
+// printf("Vertical Hit -> hit_x: %f, hit_y: %f\n", map.texture.vertical_hit_x, map.texture.vertical_hit_y);
+
 	mlx_key_hook(mlx, update_player_p, &map);
 	mlx_loop(mlx);
 	return (0);
