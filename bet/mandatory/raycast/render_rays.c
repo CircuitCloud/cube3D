@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/27 11:22:36 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/28 01:22:25 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,21 @@ void set_rays_angle(t_map *map)
 		// draw_line(map->img, px, py, x, y, 0);
 		////////here
 		if (map->ray[i].hit_vertical)
-			map->ray[i].texture_x = (int)y % TILESIZE;
+			map->ray[i].wall_x = px + map->ray[i].distance * cos(map->ray[i].ray_angle);
 		else
-			map->ray[i].texture_x = (int)x % TILESIZE;
+			map->ray[i].wall_x = py + map->ray[i].distance * sin(map->ray[i].ray_angle);
+
+		//0 tal 1 fractional
+		map->ray[i].wall_x -= floor(map->ray[i].wall_x);
+		//
+		map->ray[i].texture_x = (int)(map->ray[i].wall_x * (double)(TILESIZE));
+		
+		
+		// nfllipi based on ray diiirectionnn ----
+		if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) || (!map->ray[i].hit_vertical && sin(map->ray[i].ray_angle) < 0))
+		{
+			map->ray[i].texture_x = TILESIZE - map->ray[i].texture_x - 1;
+		}
 		render_wall(map, map->ray[i], i);
 		i++;
 	}

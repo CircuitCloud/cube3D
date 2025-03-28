@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/27 21:28:00 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/28 02:11:28 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,35 +74,61 @@ t_texture	*load_texture(char *path)
 	return (texture);
 }
 
-
-void    load_textures(t_map *map)
+void load_textures(t_map *map)
 {
     int i;
     char *paths[4];
 
+    paths[NORTH_TEXTURE] = "../hh.jpeg";
+    paths[SOUTH_TEXTURE] = "../hh.jpeg";
+    paths[EAST_TEXTURE]  = "../hh.jpeg";
+    paths[WEST_TEXTURE]  = "../hh.jpeg";
+
     i = 0;
-	paths[0] = "../hh.jpeg";
-	paths[1] = "../hh.jpeg";
-	paths[2] = "../hh.jpeg";
-	paths[3] = "../hh.jpeg";
     while (i < 4)
     {
-        load_texture(paths[i]);
+        map->text_buffer[i] = load_texture(paths[i]);  // Store the texture in the array
         i++;
     }
 }
 
-int get_texture_pixel(int **texture_buff, int x, int y, int index)
-{
-	int	p_index;
 
-    if(x < 0 || x >= TEXTURE_SIZE || y < 0 || y >= TEXTURE_SIZE)
-    {
-        return 0x000000;
-    }
-    p_index = (y * TEXTURE_SIZE) + x;
-	return (texture_buff[index][p_index]);
+// void    load_textures(t_map *map)
+// {
+//     int i;
+//     char *paths[4];
+
+//     i = 0;
+// 	paths[0] = "../hh.jpeg";
+// 	paths[1] = "../hh.jpeg";
+// 	paths[2] = "../hh.jpeg";
+// 	paths[3] = "../hh.jpeg";
+//     while (i < 4)
+//     {
+//         load_texture(paths[i]);
+//         i++;
+//     }
+// }
+
+uint32_t	get_pixel(t_texture *texture, int x, int y)
+{
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0x000000FF);
+	return (texture->adr[y * texture->width + x]);
 }
+
+
+// int get_texture_pixel(int **texture_buff, int x, int y, int index)
+// {
+// 	int	p_index;
+
+//     if(x < 0 || x >= TEXTURE_SIZE || y < 0 || y >= TEXTURE_SIZE)
+//     {
+//         return 0x000000;
+//     }
+//     p_index = (y * TEXTURE_SIZE) + x;
+// 	return (texture_buff[index][p_index]);
+// }
 
 void draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end)
 {

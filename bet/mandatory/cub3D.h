@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/27 20:50:20 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/28 02:13:08 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@
 #define NUM_TEXTURES 4
 #define TEXTURE_SIZE 64
 
-#define EAST_TEXTURE 1
-#define WEST_TEXTURE 2
-#define SOUTH_TEXTURE 3
-#define NORTH_TEXTURE 4
+#define EAST_TEXTURE 0
+#define WEST_TEXTURE 1
+#define SOUTH_TEXTURE 2
+#define NORTH_TEXTURE 3
 
 
 typedef	struct s_texture
@@ -53,6 +53,8 @@ typedef	struct s_texture
 	
 	int	horizontal_hit_x;
 	int	horizontal_hit_y;
+
+	
 }	t_texture;
 typedef struct s_identifier
 {
@@ -98,6 +100,15 @@ typedef struct s_ray
 	int	texture;
 	int	texture_x;
 	
+
+	/// @brief //
+	double	wall_x;
+	int		tex_x;
+	int		tex_width;
+	double	wall_dist;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		side;
 	
 } t_ray;
 
@@ -154,7 +165,7 @@ void draw_player(t_map *map, mlx_image_t *img);
 int find_wall(t_map *map, double x, double y);
 
 void	load_textures(t_map *map);
-int		get_texture_pixel(int **texture_buff, int x, int y, int index);
+int	get_texture_pixel(t_map *map, t_ray ray, int tex_y);
 void	draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
 
 #endif
