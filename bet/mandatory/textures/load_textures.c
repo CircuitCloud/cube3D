@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/28 02:11:28 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/03/28 04:14:34 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_texture	*load_texture(char *path)
 	texture->width = texture->img->width;
 	texture->height = texture->img->height;
 	texture->adr = (uint32_t *)texture->img->pixels;
+printf("Loaded texture: %s -> Width: %d, Height: %d\n", path, texture->width, texture->height);
 
 	return (texture);
 }
@@ -79,15 +80,15 @@ void load_textures(t_map *map)
     int i;
     char *paths[4];
 
-    paths[NORTH_TEXTURE] = "../hh.jpeg";
-    paths[SOUTH_TEXTURE] = "../hh.jpeg";
-    paths[EAST_TEXTURE]  = "../hh.jpeg";
-    paths[WEST_TEXTURE]  = "../hh.jpeg";
+    paths[NORTH_TEXTURE] = "../../textures/hh.jpeg";
+    paths[SOUTH_TEXTURE] = "../../textures/hh.jpeg";
+    paths[EAST_TEXTURE]  = "../../textures/hh.jpeg";
+    paths[WEST_TEXTURE]  = "../../textures/hh.jpeg";
 
     i = 0;
     while (i < 4)
     {
-        map->text_buffer[i] = load_texture(paths[i]);  // Store the texture in the array
+        map->text_buffer[i] = load_texture(paths[i]);
         i++;
     }
 }
@@ -99,10 +100,10 @@ void load_textures(t_map *map)
 //     char *paths[4];
 
 //     i = 0;
-// 	paths[0] = "../hh.jpeg";
-// 	paths[1] = "../hh.jpeg";
-// 	paths[2] = "../hh.jpeg";
-// 	paths[3] = "../hh.jpeg";
+// 	paths[0] = "../../textures/hh.jpeg";
+// 	paths[1] = "../../textures/hh.jpeg";
+// 	paths[2] = "../../textures/hh.jpeg";
+// 	paths[3] = "../../textures/hh.jpeg";
 //     while (i < 4)
 //     {
 //         load_texture(paths[i]);
@@ -136,16 +137,10 @@ void draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double e
     int texture_color;
     int texture_y;
 
-    // Loop through the wall slice (from begin to end)
     for (y = begin; y < end; y++)
     {
-        // Calculate the texture Y coordinate based on the wall slice height
         texture_y = (y - begin) / (end - begin) * TEXTURE_SIZE;
 
-        // Get the color from the texture at (texture_x, texture_y)
-        // texture_color = get_texture_pixel(map->text_buffer, ray.texture_x, texture_y, ray.texture);
-
-        // Draw the pixel on the screen (with texture color)
         mlx_put_pixel(map->img, x, y, texture_color);
     }
 }
