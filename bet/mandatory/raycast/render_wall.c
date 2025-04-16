@@ -6,18 +6,18 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:19:44 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/28 04:13:18 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:14:48 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void draw_rectangle(t_map *map, double begin, double end, int x)
+void	draw_rectangle(t_map *map, double begin, double end, int x, int color)
 {
-	int y;
-	int color;
+	int	y;
+	// int	color;
 
-	color = 0xFFFFFF01;
+	// color = 0x808080;
 	y = 0;
 	while (y < map->height)
 	{
@@ -27,91 +27,33 @@ void draw_rectangle(t_map *map, double begin, double end, int x)
 	}
 }
 
-
-int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
-{
-	int	color;
-	int	tex_x;
-	int	texture_index;
-	t_texture *texture;
-
-	if (ray.hit_vertical)
-		texture_index = (cos(ray.ray_angle) > 0) ? EAST_TEXTURE : WEST_TEXTURE;
-	else
-		texture_index = (sin(ray.ray_angle) > 0) ? SOUTH_TEXTURE : NORTH_TEXTURE;
-
-	texture = map->text_buffer[texture_index];
-	if (!texture || !texture->adr)
-		return (0xFF000000);
-
-	tex_x = ray.texture_x;
-	tex_y = tex_y;
-
-	if (tex_x < 0) 
-		tex_x = 0;
-	if (tex_x >= texture->width) 
-		tex_x = texture->width - 1;
-	if (tex_y < 0) 
-		tex_y = 0;
-	if (tex_y >= texture->height) 
-		tex_y = texture->height - 1;
-
-	color = texture->adr[tex_y * texture->width + tex_x];
-
-	return (color);
-}
-
-
 void	render_wall(t_map *map, t_ray ray, int x)
 {
 	int		window_projection;
 	double	proj_distance;
 	double	proj_wall_height;
-	int		begin;
-	int		end;
+	double	begin;
+	double	end;
 	int		y;
 	int		tex_y;
 	int		color;
 
-	window_projection = map->width / 2;
+	ray.distance *= cos(map->player.rot_angle - ray.ray_angle);
+	window_projection = (map->width / 2);
 	proj_distance = window_projection / tan(FOV / 2);
 	proj_wall_height = (TILESIZE / ray.distance) * proj_distance;
-
-	begin = (map->height / 2) - proj_wall_height / 2;
+	begin = (map->height / 2) - (proj_wall_height / 2);
 	end = begin + proj_wall_height;
-
-
 	if (begin < 0)
 		begin = 0;
 	if (end > map->height)
 		end = map->height;
-
 	y = begin;
 	while (y < end)
 	{
-	
-		tex_y = ((y - begin) * TILESIZE) / (end - begin);
+		tex_y = ((y - begin) * map->text_buffer[ray.texture]->height) / (end - begin);
 		color = get_texture_pixel(map, ray, tex_y);
-
 		mlx_put_pixel(map->img, x, y, color);
 		y++;
 	}
 }
-
-
-// void	render_wall(t_map *map, t_ray ray, int x)
-// {
-// 	int window_projection;
-// 	double proj_distance;
-// 	double proj_wall_height;
-// 	double begin;
-// 	double end;
-
-// 	window_projection = map->width / 2;
-// 	proj_distance = window_projection / tan(FOV / 2);
-// 	proj_wall_height = (TILESIZE / ray.distance) * proj_distance;
-// 	begin = (map->height / 2 ) - proj_wall_height / 2;
-// 	end = begin + proj_wall_height;
-// 	//  draw_wall_with_texture(map, ray, x, begin, end);
-// 	draw_rectangle(map, begin, end, x);
-// }

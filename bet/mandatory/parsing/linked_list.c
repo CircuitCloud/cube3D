@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:46:51 by cahaik            #+#    #+#             */
-/*   Updated: 2025/02/25 16:48:32 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/16 19:03:08 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-t_identifier	*cub_lstnew()
+t_identifier	*cub_lstnew(void)
 {
 	t_identifier	*new;
 

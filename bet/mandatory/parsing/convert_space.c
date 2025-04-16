@@ -6,17 +6,17 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:07:02 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/13 09:38:21 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/23 15:15:47 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-char *convert_to_space(char *str)
+char	*convert_to_space(char *str)
 {
-	int len;
-	int i;
-	char *newstr;
+	int		len;
+	int		i;
+	char	*newstr;
 
 	i = 0;
 	len = ft_strlen(str);

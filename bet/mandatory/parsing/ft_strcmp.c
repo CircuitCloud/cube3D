@@ -6,15 +6,15 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 09:35:10 by cahaik            #+#    #+#             */
-/*   Updated: 2025/02/25 15:07:38 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/24 10:31:00 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int ft_strcmp(char *dest, char *src)
+int	ft_strcmp(char *dest, char *src)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!dest && !src)

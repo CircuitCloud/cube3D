@@ -6,19 +6,17 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/03/27 13:46:41 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:39:09 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../cub3D.h"
 
 void	which_texture(t_map *map, int index)
 {
-	if(map->ray[index].hit_vertical)
+	if (map->ray[index].hit_vertical)
 	{
-		if(cos(map->ray[index].ray_angle) > 0)
+		if (cos(map->ray[index].ray_angle) > 0)
 			map->ray[index].texture = EAST_TEXTURE;
 		else
 			map->ray[index].texture = WEST_TEXTURE;
@@ -32,13 +30,29 @@ void	which_texture(t_map *map, int index)
 	}
 }
 
-//__________calculate_texture_x
-void	x_cordianets(t_ray *ray)
-{
-	if(ray->hit_vertical)
-		ray->texture_x = fmod(ray->y_v_wall, TEXTURE_SIZE);
-	else
-		ray->texture_x = fmod(ray->x_h_wall, TEXTURE_SIZE);
-	ray->texture_x = (ray->texture_x / TEXTURE_SIZE) * NUM_TEXTURES;
-}
 
+void	texture_coord(t_map *map, int i)
+{
+	double		hit_coord;
+	double		wall_x;
+	t_texture	*tex;
+
+	which_texture(map, i);
+	tex = map->text_buffer[map->ray[i].texture];
+	if (map->ray[i].hit_vertical)
+		hit_coord = map->ray[i].wall_hit_y;
+	else
+		hit_coord = map->ray[i].wall_hit_x;
+	wall_x = fmod(hit_coord, TILESIZE) / TILESIZE;
+	if (wall_x < 0.01)//n9dr nmss7ha
+		wall_x = 0.01;
+	if (wall_x > 0.99)
+		wall_x = 0.99;
+	map->ray[i].wall_x = wall_x;
+	map->ray[i].texture_x = (int)(wall_x * tex->width);
+	//nfellipy hna (9bel mna ntflippa)
+	if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) ||
+		(!map->ray[i].hit_vertical && sin(map->ray[i].ray_angle) < 0))
+		map->ray[i].texture_x = tex->width - map->ray[i].texture_x - 1;
+	render_wall(map, map->ray[i], i);
+}

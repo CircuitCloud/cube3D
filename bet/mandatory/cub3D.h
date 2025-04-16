@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/28 02:13:08 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:41:45 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-// #include "../minilibx_mms_20200219/mlx.h"
-#define TILESIZE 32
-// #define LINES 0x5FFBF1
-// #define COLS 18
+#include <assert.h>
+
+#define OUT_OF_RANGE " numbers not whithin range required"
+#define COMMAS_NUMBER " commas number or less/more than numbers required"
+#define INVALID_TEXTURES " invalid textures"
+#define NEWLINE_MAP " newline inside map lines"
+#define PARSE_LINE " (parse_line)"
+#define POSITION_OF_ZERO " invalid position(direction or 0)"
+#define PLAYER_POSITION " invalid palyer's position"
+#define PLAYER_NUMBER " More/Less than one player"
+#define TILESIZE 64
 #define	WIDTH 1024
 #define HEIGHT 1024
 #define FOV (60 * (M_PI / 180))
 #define RES 5
-#define RAYS_NUMBER (1024) // width not 1024 and round it
+#define RAYS_NUMBER (1024)
 #define ANGLE (FOV / (RAYS_NUMBER - 1))
-#define NUM_TEXTURES 4
+// #define ANGLE (FOV / WIDTH)
+#define PLAYER_RADIUS 30
+
 #define TEXTURE_SIZE 64
+#define NUM_TEXTURES 4
 
-#define EAST_TEXTURE 0
-#define WEST_TEXTURE 1
-#define SOUTH_TEXTURE 2
-#define NORTH_TEXTURE 3
+#define NORTH_TEXTURE 0
+#define SOUTH_TEXTURE 1
+#define EAST_TEXTURE 2
+#define WEST_TEXTURE 3
 
-
-typedef	struct s_texture
-{
-	mlx_texture_t	*img;
-	uint32_t		*adr;
-	int				width;
-	int				height;
-
-	int	vertical_hit_x;
-	int	vertical_hit_y;
-	
-	int	horizontal_hit_x;
-	int	horizontal_hit_y;
-
-	
-}	t_texture;
 typedef struct s_identifier
 {
 	char *identifier;
@@ -64,12 +58,13 @@ typedef struct s_identifier
 	struct s_identifier *next;
 } t_identifier;
 
+
 typedef struct s_player
 {
 	int x;
 	int y;
-	double move_x;
-	double move_y;
+	int move_x;
+	int move_y;
 	char direction;
 	int	move_speed;
 	int	turn_direc;
@@ -90,46 +85,69 @@ typedef struct s_ray
 	int up;
 	int right;
 	int left;
-	double distance;
 	int x_h_wall;
 	int y_h_wall;
 	int x_v_wall;
 	int y_v_wall;
+	double step_y;
+	double step_x;
+	double distance;
+	bool f_point_h;
+	bool f_point_v;
 
 	int	hit_vertical;
-	int	texture;
-	int	texture_x;
-	
-
-	/// @brief //
 	double	wall_x;
-	int		tex_x;
-	int		tex_width;
-	double	wall_dist;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		side;
-	
+	int	texture_x;
+	int	texture;
+	double	wall_hit_x;
+	double	wall_hit_y;
+
+	double	ver_hit_x;
+	double	ver_hit_y;
+	double	hor_hit_x;
+	double	hor_hit_y;
+
 } t_ray;
 
+typedef	struct s_texture
+{
+	mlx_texture_t	*img;
+	uint32_t		*adr;
+	int				width;
+	int				height;
+
+	int	vertical_hit_x;
+	int	vertical_hit_y;
+	
+	int	horizontal_hit_x;
+	int	horizontal_hit_y;
+
+	
+}	t_texture;
 typedef struct s_map
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	int	width;
 	int	height;
+
 	int	fd;
 	int index;
 	size_t row;
 	char **cmap;
 	char **splited;
-	t_ray ray[RAYS_NUMBER];
+	int rays_number;
+	t_ray *ray;
+	char **split_numbers;
 	t_identifier *id;
 	t_player player;
-	// t_texture	texture[NUM_TEXTURES];
+
+	// t_texture	texture;
 	t_texture	*text_buffer[NUM_TEXTURES];
-	t_texture	texture;
-}	t_map;
+	t_texture 	*player_texture;
+	t_texture 	*ceiling_texture;
+	t_texture	*floor_texture;
+} t_map;
 
 
 t_map parse(char *mapname);
@@ -137,7 +155,7 @@ int parse_line(char *line, int row, int rw, int len);
 void bad_alloc(t_map* map);
 void free_maps(t_map *map, int flag);
 void fd_check(char* name, t_map *m, int flag);
-void invalid_map(char *message, t_map *map, char **s_numbers, t_identifier *new);
+void invalid_map(char *ms, t_map *map, t_identifier *new, char *line);
 void parse_textures(char *filename, t_map* map);
 void parse_map(char *filename, t_map* map);
 void p_directions(t_map* map, int n_players);
@@ -147,14 +165,17 @@ void free_splited(char **splited);
 int ft_strcmp(char *dest, char *src);
 int cub_atoi(char *str, int *err);
 void parse_textures_util(t_map *map, int i,char* line);
-void free_linked_list(t_identifier *id, int flag);
+t_identifier *free_linked_list(t_identifier *id, int flag);
 char *convert_to_space(char *str);
 void set_rays_angle(t_map *map);
-double horizontal_distance(t_map *map, t_ray ray);
+double horizontal_distance(t_map *map, t_ray *ray);
 void ray_look_direction(double *angle, t_ray *ray);
-double vertical_distance(t_map *map, t_ray ray);
+double vertical_distance(t_map *map, t_ray *ray);
 int wall_existance(t_map *map, double x, double y);
 void render_wall(t_map *map, t_ray ray, int x);
+void alloc_check(t_map *map, t_identifier *new, char *line);
+void invalid_map_2(char *message, t_map *map, char *line, char *pureline);
+void	invalid_map_3(char *message, t_map *map, int flag);
 
 void update_player_p(mlx_key_data_t key, void *param);
 void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
@@ -164,10 +185,17 @@ void	draw_map(t_map *map);
 void draw_player(t_map *map, mlx_image_t *img);
 int find_wall(t_map *map, double x, double y);
 
-void	load_textures(t_map *map);
+void draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
+void	which_texture(t_map *map, int index);
 int	get_texture_pixel(t_map *map, t_ray ray, int tex_y);
-void	draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
-
+void load_textures(t_map *map);
+void render_player(t_map *map);
+uint32_t get_pixel_color(t_texture *texture, int x, int y);
+void	ft_cleanup(t_map *map);
+// void draw_debug_player_dot(t_map *map);
+void render_pov(t_map *map);
+void	free_textures(t_map *map);
+void	texture_coord(t_map *map, int i);
 #endif
 
 

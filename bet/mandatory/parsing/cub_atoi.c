@@ -6,18 +6,19 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 07:56:30 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/13 08:46:29 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/03/24 10:29:22 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-int cub_atoi(char *original, int *err)
+int	cub_atoi(char *original, int *err)
 {
-	int i;
-	int n;
-	int len;
-	char *new;
+	int		i;
+	int		n;
+	int		len;
+	int		cpy;
+	char	*new;
 
 	n = 0;
 	i = 0;
@@ -28,9 +29,11 @@ int cub_atoi(char *original, int *err)
 	{
 		if (!ft_isdigit(new[i]))
 			return (free(new), *err = 1, n);
+		cpy = n;
 		n = (n * 10) + (new[i] - '0');
-		//handle int max
-		len++;//for null check
+		if (cpy > n)
+			return (free(new), *err = 1, n);
+		len++;
 		i++;
 	}
 	if (len == 0)
