@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/17 00:13:27 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:22:29 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ void draw_floor_ceil(t_map *map)
 {
 	int i;
 	int j;
-
-	i = 0;
-	j  = 0;
 	int tex_x;
 	int	tex_y;
 	uint32_t color;
 	t_ray dummy_ray;
 
+	i = 0;
+	j  = 0;
 	while (i < map->height)
 	{
 		j = 0;
@@ -53,7 +52,10 @@ void draw_floor_ceil(t_map *map)
 				tex_x = j % map->ceiling_texture->width;
 				tex_y = i % map->ceiling_texture->height;
 				dummy_ray.texture_x = tex_x;
-				color = get_pixel_color(map->ceiling_texture, tex_x, tex_y);
+				// if(ft_strcmp(map->id->identifier, "C") && map->id->colors[0])
+				// 	color = get_pixel_color(NULL, tex_x, tex_y, map);
+				// else
+					color = get_pixel_color(map->ceiling_texture, tex_x, tex_y, map);
 				mlx_put_pixel(map->img, j, i, color);
 			}
 			else
@@ -70,6 +72,7 @@ void draw_floor_ceil(t_map *map)
 		i++;
 	}
 }
+
 
 void	check_distance(t_map *map, int i, double distance1)
 {
@@ -100,12 +103,12 @@ void	set_rays_angle(t_map *map)
 	int		x;
 	int		y;
 
-	i = -1;
+	i = 0;
 	map->rays_number = map->width;
 	fr_angle = map->player.rot_angle - (FOV / 2);
 	draw_floor_ceil(map);
 	// draw_debug_player_dot(map);
-	while (++i < map->rays_number)
+	while (i < map->rays_number)
 	{
 		if (i == 0)
 			agl = fr_angle;
@@ -117,6 +120,7 @@ void	set_rays_angle(t_map *map)
 		distance1 = vertical_distance(map, &map->ray[i]);
 		check_distance(map, i, distance1);
 		texture_coord(map, i);
+		i++;
 	}
 		render_pov(map);
 }

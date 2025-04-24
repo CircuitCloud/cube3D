@@ -6,25 +6,21 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 06:20:04 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/16 23:46:33 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 06:59:29 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	render_pov(t_map *map)
+void	render_pov_tex(t_map *map, int screen_x, int screen_y)
 {
-	int	x;
-	int	y;
-	int	screen_x;
-	uint32_t color;
-	int	screen_y;
-	int draw_x;
-	int draw_y;
+	int			x;
+	int			y;
+	int			draw_x;
+	int			draw_y;
+	uint32_t	color;
 
-	screen_x = (map->width / 2) - (map->player_texture->width / 2);
-	screen_y = map->height / 1.5; 
-	// int	screen_y = map->height - map->player_texture->height - 10;
+	x = 0;
 	y = 0;
 	while (y < map->player_texture->height)
 	{
@@ -43,5 +39,21 @@ void	render_pov(t_map *map)
 		}
 		y++;
 	}
+}
+
+void	render_pov(t_map *map)
+{
+	int			screen_x;
+	int			screen_y;
+
+	if (!map || !map->img)
+		return(printf("Error: NULL pointer in render_gun\n"), exit(1));
+	screen_x = (map->width / 2) - (map->player_texture->width / 2);
+	screen_y = map->height / 1.5; 
+	if (screen_x < 0)
+		screen_x = 0;
+	if (screen_y < 0)
+		screen_y = 0;
+	render_pov_tex(map, screen_x, screen_y);
 }
 

@@ -1,17 +1,10 @@
-   WE                            textures/wolfenstein/grey_stone.xpm
-NO      textures/wolfenstein/purple_stone.xpm
+F 76,76,76
+C 99,99,99
 
-
-
-SO textures/wolfenstein/red_brick.xpm
-
-F      17,    38,     64
-
-EA textures/wolfenstein/wood.xpm
-
-
-
-C 218, 234, 235
+NO textures/sss.png
+SO textures/openart-image_xSgCUO_X_1744750066492_raw.png
+WE textures/openart-image_x4m0LRrS_1744751156095_raw.png
+EA textures/openart-image_KYLzW6Xo_1744749622223_raw.png
 
 1111111111111111111111111
 10S0110000100000000000001

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/17 00:41:45 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 06:32:52 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 #define RAYS_NUMBER (1024)
 #define ANGLE (FOV / (RAYS_NUMBER - 1))
 // #define ANGLE (FOV / WIDTH)
-#define PLAYER_RADIUS 30
+#define PLAYER_RADIUS 31.5
 
 #define TEXTURE_SIZE 64
 #define NUM_TEXTURES 4
@@ -49,6 +49,8 @@
 #define SOUTH_TEXTURE 1
 #define EAST_TEXTURE 2
 #define WEST_TEXTURE 3
+
+
 
 typedef struct s_identifier
 {
@@ -106,6 +108,11 @@ typedef struct s_ray
 	double	ver_hit_y;
 	double	hor_hit_x;
 	double	hor_hit_y;
+
+
+
+// int texture_x;
+int texture_width; // optionally, or just pass it from map->text_buffer[...]
 
 } t_ray;
 
@@ -176,7 +183,10 @@ void render_wall(t_map *map, t_ray ray, int x);
 void alloc_check(t_map *map, t_identifier *new, char *line);
 void invalid_map_2(char *message, t_map *map, char *line, char *pureline);
 void	invalid_map_3(char *message, t_map *map, int flag);
+void	update_player(void *param);
+// void	handle_key(mlx_key_data_t key, t_map *map);
 
+// void	handle_key(void *param);
 void update_player_p(mlx_key_data_t key, void *param);
 void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
 void    draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
@@ -188,14 +198,21 @@ int find_wall(t_map *map, double x, double y);
 void draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
 void	which_texture(t_map *map, int index);
 int	get_texture_pixel(t_map *map, t_ray ray, int tex_y);
+uint32_t get_pixel_color(t_texture *texture, int x, int y, t_map *map);
 void load_textures(t_map *map);
 void render_player(t_map *map);
-uint32_t get_pixel_color(t_texture *texture, int x, int y);
+// uint32_t get_pixel_color(t_texture *texture, int x, int y);
 void	ft_cleanup(t_map *map);
 // void draw_debug_player_dot(t_map *map);
 void render_pov(t_map *map);
 void	free_textures(t_map *map);
 void	texture_coord(t_map *map, int i);
+
+
+void	update_player_loop(void *param);
+void	handle_key(t_map *map);
+// void	handle_key(t_map *map, int *move_x, int *move_y);
+
 #endif
 
 

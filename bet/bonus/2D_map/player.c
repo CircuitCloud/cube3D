@@ -6,103 +6,109 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/15 17:03:07 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:01:10 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../cub3D.h"
 
-void draw_player(t_map *map, mlx_image_t *img)
+int	find_wall(t_map *map, double x, double y)
 {
-    int rad = 4;
-    int px;
-    int py;
-	double rot_angle;
-	int line_x;
-	int line_y;
+	double padding;
+	int left;
+	int right;
+	int top;
+	int bottom;
 
-	px = map->player.move_x;
-	py = map->player.move_y;
-    rot_angle = map->player.rot_angle;
-    line_x= px + (cos(rot_angle) * 30);
-    line_y = py + (sin(rot_angle) * 30);
-    if (!map)
-    {
-        printf("Error: map is NULL\n");
-        exit(1);
-    }
-    draw_filled_circle(img, px, py, rad, 0xFF0000FF);
+	padding = 5;
+	left = (int)((x - padding) / TILESIZE);
+	right = (int)((x + padding) / TILESIZE);
+	top = (int)((y - padding) / TILESIZE);
+	bottom = (int)((y + padding) / TILESIZE);
+	if (!map || !map->cmap)
+		return (1);
+	if (top < 0 || left < 0 || bottom >= map->height ||
+		right >= (int)ft_strlen(map->cmap[bottom]))
+		return (1);
+	return 
+	(
+		map->cmap[top][left] == '1' ||
+		map->cmap[top][right] == '1' ||
+		map->cmap[bottom][left] == '1' ||
+		map->cmap[bottom][right] == '1'
+	);
 }
 
-void	handle_key(mlx_key_data_t key, t_map *map)
+void handle_key(t_map *map)
 {
+	if (!map || !map->mlx)
+		return;
 	map->player.turn_direc = 0;
 	map->player.walk_direc = 0;
 	map->player.strafe_direc = 0;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 		map->player.turn_direc = -1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
 		map->player.turn_direc = 1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_W) || mlx_is_key_down(map->mlx, MLX_KEY_UP))
 		map->player.walk_direc = 1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_S) || mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
 		map->player.walk_direc = -1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-		map->player.walk_direc = 1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-		map->player.walk_direc = -1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
 		map->player.strafe_direc = -1;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 		map->player.strafe_direc = 1;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
+		ft_cleanup(map), exit(0);
 }
 
-void update_player_p(mlx_key_data_t key, void *param)
+void update_player_loop(void *param)
 {
 	t_map *map;
 	double rotation_speed;
 	double move_speed;
-	// double old_x;
-	// double old_y;
-	double move_x;
-	double move_y;
-	double strafe_x;
-	double strafe_y;
-	double new_x;
-	double new_y;
 
+	move_speed = 4;
+	rotation_speed = 2 * (M_PI / 180);
+	double move_x, move_y, strafe_x, strafe_y;
+	double new_x, new_y;
+	static double old_x = 0, old_y = 0, old_angle = 0;
 	if (!param)
 		return;
 	map = (t_map *)param;
-	rotation_speed = 2 * (M_PI / 180);
-	move_speed = 4;
-	// old_x = map->player.move_x;
-	// old_y = map->player.move_y;
-	handle_key(key, map);
+	handle_key(map);
 	map->player.rot_angle += map->player.turn_direc * rotation_speed;
+	if (map->player.rot_angle < 0)
+		map->player.rot_angle += 2 * M_PI;
+	if (map->player.rot_angle > 2 * M_PI)
+		map->player.rot_angle -= 2 * M_PI;
 	move_x = cos(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	move_y = sin(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	strafe_x = cos(map->player.rot_angle + M_PI_2) * map->player.strafe_direc * move_speed;
 	strafe_y = sin(map->player.rot_angle + M_PI_2) * map->player.strafe_direc * move_speed;
-	// printf("movex %f movey %f strafex %f strafey %f \n", move_x, move_y, strafe_x, strafe_y);
 	new_x = map->player.move_x + move_x + strafe_x;
 	new_y = map->player.move_y + move_y + strafe_y;
-    if (!find_wall(map, new_x, new_y))
-    {
-        map->player.move_x = new_x;
-        map->player.move_y = new_y;
-    }
-    else
-        printf("stopppppp \n");
-	if (map->player.turn_direc || map->player.walk_direc || map->player.strafe_direc)
+	if (!find_wall(map, new_x, new_y))
 	{
-		mlx_delete_image(map->mlx, map->img);
+		map->player.move_x = new_x;
+		map->player.move_y = new_y;
+	}
+	if (map->player.move_x != old_x || map->player.move_y != old_y || map->player.rot_angle != old_angle)
+	{
+		old_x = map->player.move_x;
+		old_y = map->player.move_y;
+		old_angle = map->player.rot_angle;
+		if (map->img)
+			mlx_delete_image(map->mlx, map->img);
 		map->img = mlx_new_image(map->mlx, map->width, map->height);
-		// draw_map(map);
+		if (!map->img)
+		{
+			free_textures(map);
+			printf("Error: Failed to create new image.\n");
+			exit(1);
+		}
 		mlx_image_to_window(map->mlx, map->img, 0, 0);
-		// draw_player(map, map->img);
 		set_rays_angle(map);
-		draw_minimap(map);
 	}
 }

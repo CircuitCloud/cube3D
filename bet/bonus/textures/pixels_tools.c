@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:37:01 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/16 23:41:31 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:27:55 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 	return (color);
 }
 
-uint32_t get_pixel_color(t_texture *texture, int x, int y)
+uint32_t get_pixel_color(t_texture *texture, int x, int y, t_map *map)
 {
 	uint8_t *pixels;
 	uint8_t r;
@@ -53,12 +53,20 @@ uint32_t get_pixel_color(t_texture *texture, int x, int y)
 	uint8_t	a;
 	int		index;
 
-	pixels = texture->img->pixels;
-	index = (y * texture->width + x) * 4;
-	r = pixels[index + 0];
-	g = pixels[index + 1];
-	b = pixels[index + 2];
-	a = pixels[index + 3];
+	if(texture)
+	{
+		pixels = texture->img->pixels;
+		index = (y * texture->width + x) * 4;
+		r = pixels[index + 0];
+		g = pixels[index + 1];
+		b = pixels[index + 2];
+		a = pixels[index + 3];
+	}
+	else 
+	{
+		r = map->id->colors[0];
+		g = map->id->colors[1];
+		b = map->id->colors[2];
+	}
 	return (r << 24) | (g << 16) | (b << 8) | a;
 }
-

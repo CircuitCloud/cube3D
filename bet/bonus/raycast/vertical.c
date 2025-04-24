@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/13 23:29:47 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 06:45:49 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ double	vertical_distance(t_map *map, t_ray *ray)
 		{
 			ray->ver_hit_x = x;
 			ray->ver_hit_y = y;
-			// map->texture->vertical_hit_x = x;
-			// map->texture->vertical_hit_y = y;
-			return (sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+			return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		}
 		if (!ray->f_point_v)
 			y = vertical_helper_y(*ray, &x, y_f, x_f);
@@ -62,5 +60,5 @@ double	vertical_distance(t_map *map, t_ray *ray)
 			vertical_helper_x(*ray, &y, &x);
 		ray->f_point_v = true; 
 	}
-	return (sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+	return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 }

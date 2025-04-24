@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/16 23:43:15 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:11:45 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #define RAYS_NUMBER (900)
 #define ANGLE (FOV / (RAYS_NUMBER - 1))
 // #define ANGLE (FOV / WIDTH)
+#define PLAYER_RADIUS 30
 
 #define MINIMAP_SCALE 0.2
 #define MINIMAP_WIDTH 200
@@ -128,6 +129,19 @@ typedef	struct s_texture
 
 	
 }	t_texture;
+
+typedef struct s_anim {
+	mlx_texture_t	*frames[4];
+	mlx_image_t		*img;
+	int				current;
+	int				frame_timer;
+	int				frame_speed;
+	int				x;
+	int				y;
+	mlx_t		*mlx;
+}	t_anim;
+
+
 typedef struct s_map
 {
 	mlx_t		*mlx;
@@ -151,7 +165,13 @@ typedef struct s_map
 	t_texture 	*player_texture;
 	t_texture 	*ceiling_texture;
 	t_texture	*floor_texture;
+	t_anim		*anim_sp;
+
+	t_anim fire;
+
 } t_map;
+
+
 
 
 t_map parse(char *mapname);
@@ -199,6 +219,16 @@ void render_pov(t_map *map);
 
 
 void	draw_minimap(t_map *map);
+void	ft_cleanup(t_map *map);
+void	free_textures(t_map *map);
+// uint32_t get_pixel_color(t_texture *texture, int x, int y);
+void	texture_coord(t_map *map, int i);
+uint32_t get_pixel_color(t_texture *texture, int x, int y, t_map *map);
+
+
+void update_player_loop(void *param);
+t_texture	*load_texture(const char *path);
+
 #endif
 
 

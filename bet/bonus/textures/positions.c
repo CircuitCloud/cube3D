@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/17 00:45:00 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 07:29:01 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ void	texture_coord(t_map *map, int i)
 	else
 		hit_coord = map->ray[i].wall_hit_x;
 	wall_x = fmod(hit_coord, TILESIZE) / TILESIZE;
-	if (wall_x < 0.01)//n9dr nmss7ha
-		wall_x = 0.01;
-	if (wall_x > 0.99)
-		wall_x = 0.99;
 	map->ray[i].wall_x = wall_x;
 	map->ray[i].texture_x = (int)(wall_x * tex->width);
-	//nfellipy hna (9bel mna ntflippa)
 	if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) ||
 		(!map->ray[i].hit_vertical && sin(map->ray[i].ray_angle) < 0))
 		map->ray[i].texture_x = tex->width - map->ray[i].texture_x - 1;
 	render_wall(map, map->ray[i], i);
+
 }

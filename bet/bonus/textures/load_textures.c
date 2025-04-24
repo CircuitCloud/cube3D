@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/17 00:44:18 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 06:49:05 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	load_walls(t_map *map)
 			map->text_buffer[EAST_TEXTURE] = load_texture(current->path);
 		current = current->next;
 	}
-	printf("aahahaaa\n");
 	return(0);
 }
 

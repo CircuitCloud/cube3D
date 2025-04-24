@@ -1,10 +1,8 @@
 
-NO ./path_to_the_north_texture
-
-
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO textures/sss.png
+SO textures/openart-image_xSgCUO_X_1744750066492_raw.png
+WE textures/openart-image_x4m0LRrS_1744751156095_raw.png
+EA textures/openart-image_KYLzW6Xo_1744749622223_raw.png
 F	220,100,0
 C	2,30,4
 

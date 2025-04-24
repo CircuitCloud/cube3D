@@ -6,8 +6,8 @@ CC = cc
 
 LIBFT = libft/libft.a
 
-# CFLAGS =  -Wall -Wextra -Werror #-g -fsanitize=address
-
+# CFLAGS =  -g -fsanitize=address
+# -Wall -Wextra -Werror 
 INCLUDES = MLX/build/libmlx42.a  MLX/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC = mandatory/main.c mandatory/parsing/parse.c mandatory/parsing/bad_alloc.c mandatory/parsing/fd_check.c \

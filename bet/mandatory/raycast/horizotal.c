@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/14 04:39:59 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/24 06:37:43 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,5 @@ double	horizontal_distance(t_map *map, t_ray *ray)
 			horizontal_helper_x(*ray, &y, &x);
 		ray->f_point_h = true; 
 	}
-	return (sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+	return (ray->hor_hit_x = x, ray->hor_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 }
