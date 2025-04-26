@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 20:13:23 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:27:03 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ int	find_wall(t_map *map, double x, double y)
 	if (top < 0 || left < 0 || bottom >= map->height ||
 		right >= (int)ft_strlen(map->cmap[bottom]))
 		return (1);
-	return
-	(
-		map->cmap[top][left] == '1' ||
-		map->cmap[top][right] == '1' ||
-		map->cmap[bottom][left] == '1' ||
-		map->cmap[bottom][right] == '1'
-	);
+	if (map->cmap[top][left] == '1' || map->cmap[top][left] == 'D' ||
+		map->cmap[top][right] == '1'  || map->cmap[top][right] == 'D' ||
+		map->cmap[bottom][left] == '1' || map->cmap[bottom][left] == 'D' ||
+		map->cmap[bottom][right] == '1' || map->cmap[bottom][right] == 'D')
+		return (1);
+	return (0);
 }
 
 void open_close_doors(t_map *map, int flag)

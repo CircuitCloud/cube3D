@@ -6,7 +6,7 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 20:07:07 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/26 20:45:29 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 #define SOUTH_TEXTURE 1
 #define EAST_TEXTURE 2
 #define WEST_TEXTURE 3
+#define DOOR_TEXTURE 4
 
 
 #define MINIMAP_TILE_SPACE 2
@@ -164,6 +165,7 @@ typedef struct s_map
 	t_texture 	*player_texture;
 	t_texture 	*ceiling_texture;
 	t_texture	*floor_texture;
+	t_texture 	*door_texture;
 
 	t_sprite	player_sprite;
 
@@ -223,7 +225,7 @@ void	texture_coord(t_map *map, int i);
 
 
 void	update_player_loop(void *param);
-void	handle_key(t_map *map);
+void load_textures(t_map *map);
 // void	handle_key(t_map *map, int *move_x, int *move_y);
 
 

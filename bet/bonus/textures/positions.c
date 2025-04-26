@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   positions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:50:51 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:48:17 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	which_texture(t_map *map, int index)
 {
+	// if (map->ray[index].is_door)
+	// {
+	// 	map->ray[index].texture = ;
+	// }
 	if (map->ray[index].hit_vertical)
 	{
 		if (cos(map->ray[index].ray_angle) > 0)
