@@ -6,9 +6,10 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:49:05 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 08:57:09 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../cub3D.h"
 
@@ -26,7 +27,7 @@ t_texture	*load_texture(const char *path)
 	texture->img = mlx_load_png(path);
 	if (!texture->img)
 	{
-		//freee && exitttt
+		//freee && exitttt rys
 		printf("E4ror: ffailed to load texture %s\n", path);
 		exit(1);
 	}
@@ -36,7 +37,6 @@ t_texture	*load_texture(const char *path)
 	printf("loaded texture: %s -> al WIDTH: %d, &&& HEIGHT: %d\n", path, texture->width, texture->height);
 	return (texture);
 }
-
 
 int	load_walls(t_map *map)
 {
@@ -60,13 +60,16 @@ int	load_walls(t_map *map)
 			map->text_buffer[EAST_TEXTURE] = load_texture(current->path);
 		current = current->next;
 	}
+	printf("aahahaaa\n");
 	return(0);
 }
 
 void load_textures(t_map *map)
 {
 	load_walls(map);
-	map->player_texture = load_texture("textures/3essa.png");
+	map->player_texture = load_texture("textures/tile0-removebg-preview.png");
 	map->ceiling_texture = load_texture("textures/openart-image_6sCiqmgt_1744752491452_raw.png");
 	map->floor_texture = load_texture("textures/openart-image_x49WIgMa_1744751845454_raw.png");
+	load_sprite_frames(map);
 }
+

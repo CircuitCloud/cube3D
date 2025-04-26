@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:36:00 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 09:38:45 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_wall(t_map *map, double x, double y)
 	int top;
 	int bottom;
 
-	padding = 5;
+	padding = 50;
 	left = (int)((x - padding) / TILESIZE);
 	right = (int)((x + padding) / TILESIZE);
 	top = (int)((y - padding) / TILESIZE);
@@ -31,7 +31,7 @@ int	find_wall(t_map *map, double x, double y)
 	if (top < 0 || left < 0 || bottom >= map->height ||
 		right >= (int)ft_strlen(map->cmap[bottom]))
 		return (1);
-	return 
+	return
 	(
 		map->cmap[top][left] == '1' ||
 		map->cmap[top][right] == '1' ||
@@ -65,9 +65,9 @@ void handle_key(t_map *map)
 
 void update_player_loop(void *param)
 {
-	t_map *map;
-	double rotation_speed;
-	double move_speed;
+	t_map	*map;
+	double	rotation_speed;
+	double	move_speed;
 
 	move_speed = 4;
 	rotation_speed = 2 * (M_PI / 180);
@@ -79,10 +79,10 @@ void update_player_loop(void *param)
 	map = (t_map *)param;
 	handle_key(map);
 	map->player.rot_angle += map->player.turn_direc * rotation_speed;
-	if (map->player.rot_angle < 0)
-		map->player.rot_angle += 2 * M_PI;
-	if (map->player.rot_angle > 2 * M_PI)
-		map->player.rot_angle -= 2 * M_PI;
+	// if (map->player.rot_angle < 0)
+	// 	map->player.rot_angle += 2 * M_PI;
+	// if (map->player.rot_angle > 2 * M_PI)
+	// 	map->player.rot_angle -= 2 * M_PI;
 	move_x = cos(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	move_y = sin(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	strafe_x = cos(map->player.rot_angle + M_PI_2) * map->player.strafe_direc * move_speed;

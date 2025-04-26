@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 06:45:49 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 05:51:07 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ double	vertical_distance(t_map *map, t_ray *ray)
 	while (x >= 0 && x < map->width && y >= 0 && y < map->height)
 	{
 		if (!wall_existance(map, x, y))
-		{
-			ray->ver_hit_x = x;
-			ray->ver_hit_y = y;
 			return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
-		}
 		if (!ray->f_point_v)
 			y = vertical_helper_y(*ray, &x, y_f, x_f);
 		else

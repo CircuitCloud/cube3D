@@ -6,19 +6,36 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 06:37:43 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 09:37:58 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+
+// int	wall_existance(t_map *map, double x, double y)
+// {
+// 	int	map_x;
+// 	int	map_y;
+
+// 	// SAFETY: Add a tiny epsilon shift to avoid wrong rounding
+// 	const double epsilon = 0.0001;
+// 	map_x = (int)((x - epsilon) / TILESIZE);
+// 	map_y = (int)((y - epsilon) / TILESIZE);
+
+// 	if (map_x < 0 || map_y < 0 || map_x >= (int)ft_strlen(map->cmap[map_y])
+// 		|| map_y >= (int)map->row)
+// 		return (0); // Outside map is wall
+// 	return (map->cmap[map_y][map_x] == '1');
+// }
 
 int	wall_existance(t_map *map, double x, double y)
 {
 	int	grid_x;
 	int	grid_y;
 
-	grid_x = (int) x / TILESIZE;
-	grid_y = (int) y / TILESIZE;
+	grid_x = (int)((x) / TILESIZE);
+	grid_y = (int)((y) / TILESIZE);
 	if (!map || grid_y < 0 || grid_x < 0 || grid_y >= (int)map->row 
 		|| !map->cmap[grid_y] || grid_x >= (int)ft_strlen(map->cmap[grid_y]))
 		return (0);

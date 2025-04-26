@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 06:20:04 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:59:29 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:08:47 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ void	render_pov(t_map *map)
 		screen_y = 0;
 	render_pov_tex(map, screen_x, screen_y);
 }
-

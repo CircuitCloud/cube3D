@@ -6,12 +6,30 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 07:22:34 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 06:15:42 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../cub3D.h"
+
+// void draw_floor_ceil(t_map *map)
+// {
+// 	int i = 0;
+// 	int j = 0;
+// 	int color = 0;
+	
+// 	while (i < map->height)
+// 	{
+// 		j = 0;
+// 		if (i < map->height / 2)
+// 			color = 0x000000;
+// 		else
+// 			color = 0x808000;
+// 		while (j < map->width)
+// 			mlx_put_pixel(map->img, j++, i, color);
+// 		i++;
+// 	}
+// }
 
 void draw_floor_ceil(t_map *map)
 {
@@ -105,6 +123,4 @@ void	set_rays_angle(t_map *map)
 		i++;
 	}
 		render_pov(map);
-		
 }
-

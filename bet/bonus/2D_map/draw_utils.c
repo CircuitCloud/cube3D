@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:54:39 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 08:33:09 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color)
 	
 	i = 0;
 	j = 0;
-	while (i < TILESIZE - 1)
+	while (i < TILESIZE * MINIMAP_SCALE)
 	{
 		j = 0;
-		while (j < TILESIZE - 1)
+		while (j < TILESIZE * MINIMAP_SCALE)
 		{
 			mlx_put_pixel(img, x + j, y + i, color);
 			j++;
@@ -78,81 +78,3 @@ void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color)
 		i++;
 	}
 }
-
-void	draw_minimap(t_map *map)
-{
-	int x;
-	int	y;
-	int px;
-	int	py;
-	int ppx;
-	int ppy;
-	int ray_length;
-	double ray_x;
-	double ray_y;
-	uint32_t color;
-
-	y = 0;
-	x = 0;
-	while (y < (int)map->row)
-	{
-		x  = 0;
-		while (x < (int)ft_strlen(map->cmap[y]) - 1)
-		{
-			px = x * MINIMAP_TILE;
-			py = y * MINIMAP_TILE;
-			if (map->cmap[y][x] == '1')
-				color = 0xFFB347;
-			else if (map->cmap[y][x] == '0')
-				color = 0xBBBBBBFF;
-			else
-				color = 0x00000000;
-			draw_tile_pixels(map->img, px, py, color);
-			x++;
-		}
-		y++;
-	}
-	ppx = map->player.move_x * MINIMAP_SCALE;
-	ppy = map->player.move_y * MINIMAP_SCALE;
-	// draw_tile_pixels(map->img, ppx - 2, ppy - 2, 0xFF0000FF); // red dot
-	draw_filled_circle(map->img, ppx - 2, ppy - 2, 4 ,0xFF0000FF);
-	ray_length = MINIMAP_TILE;
-	ray_x = ppx + cos(map->player.rot_angle) * ray_length;
-	ray_y = ppy + sin(map->player.rot_angle) * ray_length;
-	draw_line(map->img, ppx, ppy, ray_x, ray_y, 0xFF0000FF); // green ray
-}
-
-// void	draw_map(t_map *map)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	px;
-// 	int	py;
-
-// 	x = 0;
-// 	y = 0;
-// 	while (y < (int)map->row)
-//     {
-// 		x = 0;
-//         while (x < (int)ft_strlen(map->cmap[y]) - 1)
-//         {
-// 			px = x * TILESIZE;
-// 			py = y * TILESIZE;
-// 			if (map && y < (int)map->row && map->cmap[y] && map->cmap[y][x] == '1')
-// 			{
-// 				//  printf("drawing wall at (%d, %d)\n", px, py);
-//             	// draw_tile_pixels(map->img, px, py, 0xFFFFFFFF);
-// 			}
-// 			else if (map->cmap[y][x] == '0' || map->cmap[y][x] == map->cmap[map->player.y][map->player.x])
-//             	// draw_tile_pixels(map->img, px, py, 0xFFB347);
-// 			// commenteta hitax manhtajux n3adelula xi color u
-// 			//zidt player mot3u ytlewn nhal 0
-// 			// else
-// 			// 	// printf("%d\n", find_wall(map,  px,  py));
-//    			// 	draw_tile_pixels(map->img, px, py, 0xFF00FF);
-// 			x++;
-//         }
-// 		y++;
-//     }
-// 	mlx_image_to_window(map->mlx, map->img, 0, 0);
-// }

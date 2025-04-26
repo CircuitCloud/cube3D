@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:37:01 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/24 06:49:42 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/25 20:13:56 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 
 	texture = map->text_buffer[ray.texture];
 	if (!texture || !texture->img || !texture->img->pixels)
-		return (0xFF000000); // transsssprnt
+		return (0xFF000000); //transsssprnt
 	tex_x = ray.texture_x;
 	if (tex_x < 0)
 		tex_x = 0;
@@ -46,7 +46,7 @@ int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 
 uint32_t get_pixel_color(t_texture *texture, int x, int y, t_map *map)
 {
-	uint8_t *pixels;
+	uint8_t	*pixels;
 	uint8_t r;
 	uint8_t	g;
 	uint8_t	b;
@@ -62,7 +62,7 @@ uint32_t get_pixel_color(t_texture *texture, int x, int y, t_map *map)
 		b = pixels[index + 2];
 		a = pixels[index + 3];
 	}
-	else 
+	else
 	{
 		r = map->id->colors[0];
 		g = map->id->colors[1];
