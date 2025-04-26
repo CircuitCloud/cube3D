@@ -6,7 +6,7 @@ CC = cc
 
 LIBFT = libft/libft.a
 
-# CFLAGS =  -g -fsanitize=address
+#CFLAGS =  -g -fsanitize=address
 # -Wall -Wextra -Werror 
 INCLUDES = MLX/build/libmlx42.a  MLX/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 

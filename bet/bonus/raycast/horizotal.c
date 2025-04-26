@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizotal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 05:51:10 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:03:58 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,24 @@
 // 	return (map->cmap[map_y][map_x] == '1');
 // }
 
-int	wall_existance(t_map *map, double x, double y)
+int	wall_existance(t_map *map, double x, double y, int index)
 {
 	int	grid_x;
 	int	grid_y;
 
 	grid_x = (int)((x) / TILESIZE);
 	grid_y = (int)((y) / TILESIZE);
+	map->ray[index].is_door = 0;
 	if (!map || grid_y < 0 || grid_x < 0 || grid_y >= (int)map->row 
 		|| !map->cmap[grid_y] || grid_x >= (int)ft_strlen(map->cmap[grid_y]))
 		return (0);
-	else if (map->cmap[grid_y][grid_x] == '1')
+	else if (map->cmap[grid_y][grid_x] == '1' || map->cmap[grid_y][grid_x] == 'D')
+	{
+		if (map->cmap[grid_y][grid_x] == 'D')
+			map->ray[index].is_door = 1;
+			
 		return (0);
+	}
 	else
 		return (1);
 }
@@ -63,7 +69,7 @@ void	horizontal_helper_x(t_ray ray, double *y, double *x)
 	(*x) += (ray.step_y / tan(ray.ray_angle));
 }
 
-double	horizontal_distance(t_map *map, t_ray *ray)
+double	horizontal_distance(t_map *map, t_ray *ray, int index)
 {
 	double	x;
 	double	y;
@@ -79,9 +85,9 @@ double	horizontal_distance(t_map *map, t_ray *ray)
 		ray->step_y = -TILESIZE;
 	else
 		ray->step_y = TILESIZE;
-	while (x >= 0 && x < map->width && y >= 0 && y < map->height)
+	while (y >= 0 && y <= map->row * TILESIZE && x >= 0 && x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
 	{
-		if (!wall_existance(map, x, y))
+		if (!wall_existance(map, x, y, index))
 			return (ray->hor_hit_x = x, ray->hor_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		if (!ray->f_point_h)
 			x = horizontal_helper_y(*ray, &y, y_f, x_f);

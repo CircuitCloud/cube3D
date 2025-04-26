@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 05:51:07 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:04:21 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	vertical_helper_x(t_ray ray, double *y, double *x)
 	(*y) += (ray.step_x * tan(ray.ray_angle));
 }
 
-double	vertical_distance(t_map *map, t_ray *ray)
+double	vertical_distance(t_map *map, t_ray *ray, int index)
 {
 	double	x;
 	double	y;
@@ -46,9 +46,9 @@ double	vertical_distance(t_map *map, t_ray *ray)
 		ray->step_x = TILESIZE;
 	else
 		ray->step_x = -TILESIZE;
-	while (x >= 0 && x < map->width && y >= 0 && y < map->height)
+	while (y >= 0 && y < map->row * TILESIZE && x >= 0 && x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
 	{
-		if (!wall_existance(map, x, y))
+		if (!wall_existance(map, x, y, index))
 			return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		if (!ray->f_point_v)
 			y = vertical_helper_y(*ray, &x, y_f, x_f);

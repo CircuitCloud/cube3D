@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 08:12:26 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:13:23 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,33 @@ int	find_wall(t_map *map, double x, double y)
 	);
 }
 
+void open_close_doors(t_map *map, int flag)
+{
+	int i;
+	int j;
+	int lenx;
+	
+	i = 0;
+	if (map && map->cmap)
+	{
+		while (i < map->row && map->cmap[i])
+		{
+			j = 0;
+			lenx = ft_strlen(map->cmap[i]);
+			while (j < lenx && map->cmap[i][j])
+			{
+				if (flag == 0 && map->cmap[i][j] == 'D')
+					map->cmap[i][j] = 'o';
+				else if (flag == 1 && map->cmap[i][j] == 'o')
+					map->cmap[i][j] = 'D';
+				j++;
+			}
+			i++;
+		}
+	}
+	map->door_hook = true;
+}
+
 void handle_key(t_map *map)
 {
 	if (!map || !map->mlx)
@@ -61,6 +88,10 @@ void handle_key(t_map *map)
 		map->player.strafe_direc = 1;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		ft_cleanup(map), exit(0);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_O))
+		open_close_doors(map, 0);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
+		open_close_doors(map, 1);
 }
 
 void update_player_loop(void *param)
@@ -94,8 +125,9 @@ void update_player_loop(void *param)
 		map->player.move_x = new_x;
 		map->player.move_y = new_y;
 	}
-	if (map->player.move_x != old_x || map->player.move_y != old_y || map->player.rot_angle != old_angle)
+	if (map->player.move_x != old_x || map->player.move_y != old_y || map->player.rot_angle != old_angle || map->door_hook)
 	{
+		map->door_hook = false;
 		old_x = map->player.move_x;
 		old_y = map->player.move_y;
 		old_angle = map->player.rot_angle;
@@ -108,8 +140,8 @@ void update_player_loop(void *param)
 			printf("Error: Failed to create new image.\n");
 			exit(1);
 		}
-		set_rays_angle(map);
-		draw_mini_map(map);
 		mlx_image_to_window(map->mlx, map->img, 0, 0);
+		set_rays_angle(map);
+		// draw_mini_map(map);
 	}
 }

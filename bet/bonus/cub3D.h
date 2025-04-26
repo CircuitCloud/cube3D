@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 08:52:44 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:07:07 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_ray
 	double distance;
 	bool f_point_h;
 	bool f_point_v;
+	int is_door;
 
 	int	hit_vertical;
 	double	wall_x;
@@ -155,6 +156,7 @@ typedef struct s_map
 	int rays_number;
 	t_ray *ray;
 	char **split_numbers;
+	bool door_hook;
 	t_identifier *id;
 	t_player player;
 	// t_texture	texture;
@@ -186,10 +188,10 @@ void parse_textures_util(t_map *map, int i,char* line);
 t_identifier *free_linked_list(t_identifier *id, int flag);
 char *convert_to_space(char *str);
 void set_rays_angle(t_map *map);
-double horizontal_distance(t_map *map, t_ray *ray);
+double horizontal_distance(t_map *map, t_ray *ray, int index);
 void ray_look_direction(double *angle, t_ray *ray);
-double vertical_distance(t_map *map, t_ray *ray);
-int wall_existance(t_map *map, double x, double y);
+double vertical_distance(t_map *map, t_ray *ray, int index);
+int wall_existance(t_map *map, double x, double y, int index);
 void render_wall(t_map *map, t_ray ray, int x);
 void alloc_check(t_map *map, t_identifier *new, char *line);
 void invalid_map_2(char *message, t_map *map, char *line, char *pureline);

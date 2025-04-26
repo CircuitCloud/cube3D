@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 06:15:42 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 20:04:46 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	set_rays_angle(t_map *map)
 			agl += ANGLE;
 		map->ray[i].ray_angle = agl;
 		ray_look_direction(&map->ray[i].ray_angle, &map->ray[i]);
-		map->ray[i].distance = horizontal_distance(map, &map->ray[i]);
-		distance1 = vertical_distance(map, &map->ray[i]);
+		map->ray[i].distance = horizontal_distance(map, &map->ray[i], i);
+		distance1 = vertical_distance(map, &map->ray[i], i);
 		check_distance(map, i, distance1);
 		texture_coord(map, i);
 		i++;
