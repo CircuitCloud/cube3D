@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 09:38:45 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 15:39:57 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	find_wall(t_map *map, double x, double y)
 	int top;
 	int bottom;
 
-	padding = 50;
+	padding = 5;
 	left = (int)((x - padding) / TILESIZE);
 	right = (int)((x + padding) / TILESIZE);
 	top = (int)((y - padding) / TILESIZE);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:19:44 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 06:39:42 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/26 16:16:10 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,15 @@ void	render_wall(t_map *map, t_ray ray, int x)
 	proj_wall_height = (TILESIZE / ray.distance) * proj_distance;
 	begin = (map->height / 2) - (proj_wall_height / 2);
 	end = begin + proj_wall_height;
-	if (begin < 0)
-		begin = 0;
-	if (end > map->height)
-		end = map->height;
 	y = begin;
 	while (y < end)
 	{
-		tex_y = ((y - begin) * map->text_buffer[ray.texture]->height) / (end - begin);
-		color = get_texture_pixel(map, ray, tex_y);
-		mlx_put_pixel(map->img, x, y, color);
+		if (y >= 0 && y <= map->height)
+		{
+			tex_y = ((y - begin) * map->text_buffer[ray.texture]->height) / (end - begin);
+			color = get_texture_pixel(map, ray, tex_y);
+			mlx_put_pixel(map->img, x, y, color);
+		}
 		y++;
 	}
 }
