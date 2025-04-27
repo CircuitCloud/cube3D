@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 20:52:46 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/27 15:05:35 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void load_textures(t_map *map)
 	map->ceiling_texture = load_texture("textures/openart-image_6sCiqmgt_1744752491452_raw.png");
 	map->floor_texture = load_texture("textures/openart-image_x49WIgMa_1744751845454_raw.png");
 	map->door_texture = load_texture("textures/aa.png");
-	// load_sprite_frames(map);
+	load_sprite_frames(map);
 }
 

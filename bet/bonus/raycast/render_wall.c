@@ -3,29 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:19:44 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 20:53:53 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/27 20:31:22 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-void	draw_rectangle(t_map *map, double begin, double end, int x, int color)
-{
-	int	y;
-	// int	color;
 
-	// color = 0x808080;
-	y = 0;
-	while (y < map->height)
-	{
-		if (y >= begin && y <= end)
-			mlx_put_pixel(map->img, x, y, color);
-		y++;
-	}
+void draw_rectangle(t_map *map, int start_x, int start_y, int width, int height, int color)
+{
+    int x, y;
+
+    y = start_y;
+    while (y < start_y + height)
+    {
+        x = start_x;
+        while (x < start_x + width)
+        {
+            mlx_put_pixel(map->img, x, y, color);
+            x++;
+        }
+        y++;
+    }
 }
+
+
+// void	draw_rectangle(t_map *map, double begin, double end, int x, int color)
+// {
+// 	int	y;
+// 	// int	color;
+
+// 	// color = 0x808080;
+// 	y = 0;
+// 	while (y < map->height)
+// 	{
+// 		if (y >= begin && y <= end)
+// 			mlx_put_pixel(map->img, x, y, color);
+// 		y++;
+// 	}
+// }
 
 void	render_wall(t_map *map, t_ray ray, int x)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 20:27:03 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/27 23:55:50 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void open_close_doors(t_map *map, int flag)
 	map->door_hook = true;
 }
 
+
 void handle_key(t_map *map)
 {
 	if (!map || !map->mlx)
@@ -93,6 +94,7 @@ void handle_key(t_map *map)
 		open_close_doors(map, 1);
 }
 
+
 void update_player_loop(void *param)
 {
 	t_map	*map;
@@ -109,10 +111,12 @@ void update_player_loop(void *param)
 	map = (t_map *)param;
 	handle_key(map);
 	map->player.rot_angle += map->player.turn_direc * rotation_speed;
-	// if (map->player.rot_angle < 0)
-	// 	map->player.rot_angle += 2 * M_PI;
-	// if (map->player.rot_angle > 2 * M_PI)
-	// 	map->player.rot_angle -= 2 * M_PI;
+
+	if (map->player.rot_angle < 0)
+		map->player.rot_angle += 2 * M_PI;
+	if (map->player.rot_angle > 2 * M_PI)
+		map->player.rot_angle -= 2 * M_PI;
+	
 	move_x = cos(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	move_y = sin(map->player.rot_angle) * map->player.walk_direc * move_speed;
 	strafe_x = cos(map->player.rot_angle + M_PI_2) * map->player.strafe_direc * move_speed;
@@ -139,8 +143,10 @@ void update_player_loop(void *param)
 			printf("Error: Failed to create new image.\n");
 			exit(1);
 		}
-		mlx_image_to_window(map->mlx, map->img, 0, 0);
 		set_rays_angle(map);
-		// draw_mini_map(map);
+		// draw_minimap_border(map);
+		draw_mini_map(map);
+		// animate_sprite(map);
+		mlx_image_to_window(map->mlx, map->img, 0, 0);
 	}
 }

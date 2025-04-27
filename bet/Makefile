@@ -26,7 +26,7 @@ BONUS_SRC = bonus/main.c bonus/parsing/parse.c bonus/parsing/bad_alloc.c bonus/p
 		bonus/parsing/cub_atoi.c bonus/parsing/convert_space.c bonus/2D_map/player.c bonus/2D_map/draw_utils.c bonus/raycast/render_rays.c\
 		bonus/raycast/caster.c bonus/raycast/horizotal.c bonus/raycast/vertical.c bonus/raycast/render_wall.c\
 		bonus/textures/load_textures.c bonus/textures/positions.c bonus/textures/player_tex.c bonus/textures/pixels_tools.c \
-		bonus/textures/cleanup.c bonus/bonus_fun/mini_map.c 
+		bonus/textures/cleanup.c bonus/bonus_fun/mini_map.c bonus/bonus_fun/animations.c bonus/bonus_fun/rotate_mouse.c
 
 OBJ = $(SRC:.c=.o)
 

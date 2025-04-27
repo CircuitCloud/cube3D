@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 20:04:46 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/28 00:16:12 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,6 @@ void	set_rays_angle(t_map *map)
 		texture_coord(map, i);
 		i++;
 	}
-		render_pov(map);
+	animate_sprite(map);
+	render_pov(map);
 }

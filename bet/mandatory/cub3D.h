@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 06:32:52 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/27 19:25:12 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct s_player
 {
 	int x;
 	int y;
-	int move_x;
-	int move_y;
+	double move_x;
+	double move_y;
 	char direction;
 	int	move_speed;
 	int	turn_direc;

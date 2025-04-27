@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 20:45:29 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/28 00:49:57 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 #define DOOR_TEXTURE 4
 
 
-#define MINIMAP_TILE_SPACE 2
-#define MINIMAP_SCALE 0.2   
+#define MINIMAP_TILE_SPACE 1
+#define MINIMAP_SCALE 0.1
 typedef struct s_identifier
 {
 	char *identifier;
@@ -67,8 +67,8 @@ typedef struct s_player
 {
 	int x;
 	int y;
-	int move_x;
-	int move_y;
+	double move_x;
+	double move_y;
 	char direction;
 	int	move_speed;
 	int	turn_direc;
@@ -77,6 +77,12 @@ typedef struct s_player
 	bool first_time;
 	double	rot_angle;
 	int	strafe_direc;
+
+
+
+	int32_t	mouse_x;
+	int32_t	mouse_y;
+	
 
 } t_player;
 
@@ -135,12 +141,21 @@ typedef	struct s_texture
 	
 }	t_texture;
 
+
+
 typedef struct s_sprite 
 {
 	t_texture	**frames;
 	int			current_frame;
 	double		last_frame_time;
+
+	mlx_image_t	*img;
+	int			x;
+	int			y;
+	int			frame_timer;
+	int			frame_speed;
 } t_sprite;
+
 
 typedef struct s_map
 {
@@ -200,6 +215,7 @@ void invalid_map_2(char *message, t_map *map, char *line, char *pureline);
 void	invalid_map_3(char *message, t_map *map, int flag);
 void	update_player(void *param);
 // void	handle_key(mlx_key_data_t key, t_map *map);
+// void handle_key(t_map *map, double *move_x, double *move_y);
 
 // void	handle_key(void *param);
 void update_player_p(mlx_key_data_t key, void *param);
@@ -223,13 +239,28 @@ void render_pov(t_map *map);
 void	free_textures(t_map *map);
 void	texture_coord(t_map *map, int i);
 
-
 void	update_player_loop(void *param);
-void load_textures(t_map *map);
+
+void draw_rectangle(t_map *map, int start_x, int start_y, int width, int height, int color);
+
+// void	draw_rectangle(t_map *map, double begin, double end, int x, int color);
+
 // void	handle_key(t_map *map, int *move_x, int *move_y);
 
-
 void	draw_mini_map(t_map *map);
+void	load_sprite_frames(t_map *map);
+t_texture	*load_texture(const char *path);
+void	animate_sprite(void *param);
+// void animate_sprite(t_map *map);
+// void	draw_rectangle(t_map *map, double begin, double end, int x, int color);
+void draw_minimap_border(t_map *map);
+t_sprite init_sprite(mlx_t *mlx, const char *sprite_sheet_path, int frame_width, int frame_height, int total_frames);
+int mouse_move(int x, int y, t_map *map);
+
+
+
+void ft_hook_mouse(void *param);
+
 #endif
 
 

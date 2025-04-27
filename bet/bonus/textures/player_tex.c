@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 06:20:04 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/25 20:08:47 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/27 23:39:25 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	render_pov_tex(t_map *map, int screen_x, int screen_y)
 		x = 0;
 		while (x < map->player_texture->width)
 		{
-			color = map->player_texture->adr[y * map->player_texture->width + x];
+			color = map->player_sprite.frames[map->player_sprite.current_frame]->adr[y * map->player_texture->width + x];
 			if (color >> 24 != 0x00)
 			{
 				draw_x = screen_x + x;
@@ -48,7 +48,8 @@ void	render_pov(t_map *map)
 
 	if (!map || !map->img)
 		return(printf("Error: NULL pointer in render_gun\n"), exit(1));
-	screen_x = (map->width / 2) - (map->player_texture->width / 2);
+	// screen_x = (map->width / 2) - (map->player_texture->width / 2);
+	screen_x = (map->width / 2) - (map->player_sprite.frames[map->player_sprite.current_frame]->width / 2);
 	screen_y = map->height / 1.5; 
 	if (screen_x < 0)
 		screen_x = 0;

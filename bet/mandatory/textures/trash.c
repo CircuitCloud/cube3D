@@ -133,3 +133,101 @@
 //     }
 // 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 // }
+
+
+
+///////////////BONUS///////////////////
+// void	load_sprite_frames(t_map *map)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	char *paths[4] = 
+// 	{
+// 		"textures/tile0-removebg-preview.png",
+// 		"textures/tile1-removebg-preview.png",
+// 		"textures/tile2-removebg-preview.png",
+// 		"textures/tile3-removebg-preview.png"
+// 	};
+
+// 	map->player_sprite.frames = malloc(sizeof(t_texture *) * 4);
+// 	if (!map->player_sprite.frames)
+// 	{
+// 		printf("allocation error\n");
+// 		exit(1);
+// 	}
+// 	while (i < 4)
+// 	{
+// 		map->player_sprite.frames[i] = load_texture(paths[i]);
+// 		i++;
+// 	}
+// 	map->player_sprite.current_frame = 0;
+// 	map->player_sprite.frame_timer = 0;
+// 	map->player_sprite.frame_speed = 20; // adjustspeeeed
+// 	map->player_sprite.last_frame_time = 0;
+// 	map->player_sprite.x = (map->width / 2) - (map->player_texture->width / 2);
+// 	map->player_sprite.y = map->height / 1.5;
+// 	// map->player_sprite.img = mlx_texture_to_image(map->mlx, map->player_sprite.frames[0]->img);
+// 	// mlx_image_to_window(map->mlx, map->player_sprite.img, map->player_sprite.x, map->player_sprite.y);
+// }
+// #include <sys/time.h>  // For getting time
+// long get_current_time_ms()
+// {
+//     struct timeval tv;
+//     gettimeofday(&tv, NULL);
+//     return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+// }
+
+
+// // void	animate_sprite(void *param)
+// // {
+// // 	t_map	*map;
+
+// // 	map = (t_map *)param;
+// // 	map->player_sprite.frame_timer++;
+// // 	if (map->player_sprite.frame_timer >= map->player_sprite.frame_speed)
+// // 	{
+// // 		map->player_sprite.frame_timer = 0;
+// // 		map->player_sprite.current_frame = (map->player_sprite.current_frame + 1) % 4;
+
+
+
+
+		
+// // 		// if (map->player_sprite.img)
+// // 		// 	mlx_delete_image(map->mlx, map->player_sprite.img);
+// // 		// map->player_sprite.img = mlx_texture_to_image(map->mlx,map->player_sprite.frames[map->player_sprite.current_frame]->img);
+// // 		// if (map->player_sprite.img)
+// // 		// 	mlx_image_to_window(map->mlx, map->player_sprite.img, map->player_sprite.x, map->player_sprite.y);
+// // 	}
+// // }
+
+
+
+
+
+
+// void animate_sprite(void *param)
+// {
+//     t_map		*map;
+//     static long	last_frame_time = 0;
+//     long		current_time;
+
+//     map = (t_map *)param;
+//     current_time = get_current_time_ms();
+//     if (current_time - last_frame_time >= map->player_sprite.frame_speed)
+//     {
+//         last_frame_time = current_time;
+//         map->player_sprite.current_frame = (map->player_sprite.current_frame + 1) % 4;
+
+//         
+//         // map->player_sprite.img = mlx_texture_to_image(map->mlx, map->player_sprite.frames[map->player_sprite.current_frame]->img);
+
+//         // // Draw the sprite on the window
+//         // if (map->player_sprite.img)
+//         // {
+//         //     mlx_image_to_window(map->mlx, map->player_sprite.img, map->player_sprite.x, map->player_sprite.y);
+//         // }
+//     }
+// }
+
