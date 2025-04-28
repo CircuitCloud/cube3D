@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:19:44 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 19:54:45 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/28 17:35:30 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	render_wall(t_map *map, t_ray ray, int x)
 		if (y >= 0 && y < map->height)
 		{
 			tex_y = ((y - begin) * map->text_buffer[ray.texture]->height) / (end - begin);
-			color = get_texture_pixel(map, ray, tex_y);			
+			color = get_texture_pixel(map, ray, tex_y);	
 			if (x >=0)
 				mlx_put_pixel(map->img, x, y, color);
 			

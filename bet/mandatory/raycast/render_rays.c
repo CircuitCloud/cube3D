@@ -6,72 +6,73 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 04:29:21 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 20:51:51 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-// void draw_floor_ceil(t_map *map)
-// {
-// 	int i = 0;
-// 	int j = 0;
-// 	int color = 0;
-	
-// 	while (i < map->height)
-// 	{
-// 		j = 0;
-// 		if (i < map->height / 2)
-// 			color = 0x000000;
-// 		else
-// 			color = 0x808000;
-// 		while (j < map->width)
-// 			mlx_put_pixel(map->img, j++, i, color);
-// 		i++;
-// 	}
-// }
-
 void draw_floor_ceil(t_map *map)
 {
-	int i;
-	int j;
-	int tex_x;
-	int	tex_y;
-	uint32_t color;
-	t_ray dummy_ray;
-
-	i = 0;
-	j  = 0;
+	int i = 0;
+	int j = 0;
+	int color = 0;
+	
 	while (i < map->height)
 	{
 		j = 0;
+		if (i < map->height / 2)
+			color = get_c_f_color(map, 1);
+		else
+			color = get_c_f_color(map, 0);
 		while (j < map->width)
-		{
-			if (i < map->height / 2)//dyel celling
-			{
-				tex_x = j % map->ceiling_texture->width;
-				tex_y = i % map->ceiling_texture->height;
-				dummy_ray.texture_x = tex_x;
-				// if(ft_strcmp(map->id->identifier, "C") && map->id->colors[0])
-				// 	color = get_pixel_color(NULL, tex_x, tex_y, map);
-				// else
-					color = get_pixel_color(map->ceiling_texture, tex_x, tex_y, map);
-				mlx_put_pixel(map->img, j, i, color);
-			}
-			else
-			{
-				tex_x = j % map->floor_texture->width;
-				tex_y = (i - map->height / 2) % map->floor_texture->height;
-				dummy_ray.texture_x = tex_x;
-				color = 0x000000;
-				// color = get_pixel_color(map->floor_texture, tex_x, tex_y);
-				mlx_put_pixel(map->img, j, i, color);
-			}
-			j++;
-		}
+			mlx_put_pixel(map->img, j++, i, color);
 		i++;
 	}
 }
+
+// void draw_floor_ceil(t_map *map)
+// {
+// 	int i;
+// 	int j;
+// 	int tex_x;
+// 	int	tex_y;
+// 	uint32_t color;
+// 	t_ray dummy_ray;
+
+// 	i = 0;
+// 	j  = 0;
+// 	while (i < map->height)
+// 	{
+// 		j = 0;
+// 		while (j < map->width)
+// 		{
+// 			if (i < map->height / 2)//dyel celling
+// 			{
+// 				tex_x = j % map->ceiling_texture->width;
+// 				tex_y = i % map->ceiling_texture->height;
+// 				dummy_ray.texture_x = tex_x;
+// 				// if(ft_strcmp(map->id->identifier, "C") && map->id->colors[0])
+// 				// 	color = get_pixel_color(NULL, tex_x, tex_y, map);
+// 				// else
+// 				color = 0x000000;
+// 					// color = get_pixel_color(map->ceiling_texture, tex_x, tex_y, map);
+// 				mlx_put_pixel(map->img, j, i, color);
+// 			}
+// 			else
+// 			{
+// 				tex_x = j % map->floor_texture->width;
+// 				tex_y = (i - map->height / 2) % map->floor_texture->height;
+// 				dummy_ray.texture_x = tex_x;
+// 				color = 0x000000;
+// 				// color = get_pixel_color(map->floor_texture, tex_x, tex_y);
+// 				mlx_put_pixel(map->img, j, i, color);
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 
 void	check_distance(t_map *map, int i, double distance1)

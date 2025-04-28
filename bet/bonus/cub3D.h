@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 00:49:57 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 21:04:15 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,10 @@ typedef struct s_map
 
 	t_sprite	player_sprite;
 
+
+	int	floor_colors[3];
+	int	ceil_colors[3];
+
 } t_map;
 
 
@@ -219,7 +223,8 @@ void	update_player(void *param);
 
 // void	handle_key(void *param);
 void update_player_p(mlx_key_data_t key, void *param);
-void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
+// void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
+void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int color);
 void    draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
 void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
 void	draw_map(t_map *map);
@@ -257,6 +262,7 @@ void draw_minimap_border(t_map *map);
 t_sprite init_sprite(mlx_t *mlx, const char *sprite_sheet_path, int frame_width, int frame_height, int total_frames);
 int mouse_move(int x, int y, t_map *map);
 
+uint32_t	get_c_f_color(t_map *map, int c);
 
 
 void ft_hook_mouse(void *param);

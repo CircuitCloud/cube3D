@@ -6,18 +6,20 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/27 20:11:02 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:11:59 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../cub3D.h"
 
-void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color)
+void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int color)
 {
 	int x;
 	int y;
+ 	int radius;
 
+	radius = 4;
 	y = -radius;
 	while (y <= radius)
 	{

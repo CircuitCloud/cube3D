@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   positions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/26 20:48:17 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/28 19:38:53 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void	which_texture(t_map *map, int index)
 {
-	// if (map->ray[index].is_door)
-	// {
-	// 	map->ray[index].texture = ;
-	// }
 	if (map->ray[index].hit_vertical)
 	{
 		if (cos(map->ray[index].ray_angle) > 0)
@@ -53,10 +49,8 @@ void	texture_coord(t_map *map, int i)
 	// 	wall_x = 0.99;
 	map->ray[i].wall_x = wall_x;
 	map->ray[i].texture_x = (int)(wall_x * tex->width);
-	//nfellipy hna (9bel mna ntflippa)
-	if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) ||
-		(!map->ray[i].hit_vertical && sin(map->ray[i].ray_angle) < 0))
+	if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) 
+		|| (!map->ray[i].hit_vertical && sin(map->ray[i].ray_angle) < 0))
 		map->ray[i].texture_x = tex->width - map->ray[i].texture_x - 1;
 	render_wall(map, map->ray[i], i);
-
 }

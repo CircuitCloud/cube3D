@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 06:23:19 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/27 21:05:33 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 16:11:16 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void draw_mini_map(t_map *map)
 
     ppx = MINIMAP_OFFSET_X + map->player.move_x * MINIMAP_SCALE + map->player.x * MINIMAP_TILE_SPACE;
     ppy = MINIMAP_OFFSET_Y + map->player.move_y * MINIMAP_SCALE + map->player.y * MINIMAP_TILE_SPACE;
-    draw_filled_circle(map->img, ppx, ppy , 4, 0xFF0000FF);
+    draw_filled_circle(map->img, ppx, ppy , 0xFF0000FF);
 }

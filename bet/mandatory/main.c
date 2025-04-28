@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 06:05:03 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 22:15:14 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int main(int ac, char **av)
 	// map.player.move_y = map.player.y * TILESIZE;
 	map.player.move_x = map.player.x * TILESIZE + TILESIZE / 2;
 	map.player.move_y = map.player.y * TILESIZE + TILESIZE / 2;
-	printf("%d  %d  \n", map.player.move_x, map.player.move_y);
+	// printf("%d  %d  \n", map.player.move_x, map.player.move_y);
 	if (map.player.direction == 'N')
 		map.player.rot_angle = 3 * M_PI_2;
 	else if (map.player.direction == 'S')

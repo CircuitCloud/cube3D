@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/27 19:25:12 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 20:57:46 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@
 #define EAST_TEXTURE 2
 #define WEST_TEXTURE 3
 
-
+#define ROTATION_SPEED 2 * (M_PI / 180);
+#define MOVE_SPEED 4
 
 typedef struct s_identifier
 {
@@ -154,7 +155,13 @@ typedef struct s_map
 	t_texture 	*player_texture;
 	t_texture 	*ceiling_texture;
 	t_texture	*floor_texture;
-} t_map;
+
+	double	new_x;
+	double	new_y;
+
+	int	floor_colors[3];
+	int	ceil_colors[3];
+}	t_map;
 
 
 t_map parse(char *mapname);
@@ -188,7 +195,8 @@ void	update_player(void *param);
 
 // void	handle_key(void *param);
 void update_player_p(mlx_key_data_t key, void *param);
-void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
+// void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int radius, int color);
+void	draw_filled_circle(mlx_image_t *img, int cx, int cy, int color);
 void    draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
 void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
 void	draw_map(t_map *map);
@@ -212,7 +220,7 @@ void	texture_coord(t_map *map, int i);
 void	update_player_loop(void *param);
 void	handle_key(t_map *map);
 // void	handle_key(t_map *map, int *move_x, int *move_y);
-
+uint32_t	get_c_f_color(t_map *map, int c);
 #endif
 
 
