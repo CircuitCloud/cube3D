@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 22:44:00 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 23:20:47 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@
 #define DOOR_TEXTURE 4
 
 
-#define MINIMAP_TILE_SPACE 1
-#define MINIMAP_SCALE 0.1
+#define MP_TILE_SPACE 1
+#define MP_SCALE 0.1
 
-#define MINIMAP_OFFSET_X 20
-#define MINIMAP_OFFSET_Y 100
+#define MP_OFFSET_X 20
+#define MP_OFFSET_Y 100
 #define ROTATION_SPEED 0.001
 
 typedef struct s_identifier
