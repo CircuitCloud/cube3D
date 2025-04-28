@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 21:04:15 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/28 22:44:00 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
+#include <sys/time.h> 
 
 #define OUT_OF_RANGE " numbers not whithin range required"
 #define COMMAS_NUMBER " commas number or less/more than numbers required"
@@ -54,6 +55,11 @@
 
 #define MINIMAP_TILE_SPACE 1
 #define MINIMAP_SCALE 0.1
+
+#define MINIMAP_OFFSET_X 20
+#define MINIMAP_OFFSET_Y 100
+#define ROTATION_SPEED 0.001
+
 typedef struct s_identifier
 {
 	char *identifier;
