@@ -6,44 +6,49 @@
 /*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 20:03:58 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/29 15:42:47 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-
-// int	wall_existance(t_map *map, double x, double y)
-// {
-// 	int	map_x;
-// 	int	map_y;
-
-// 	// SAFETY: Add a tiny epsilon shift to avoid wrong rounding
-// 	const double epsilon = 0.0001;
-// 	map_x = (int)((x - epsilon) / TILESIZE);
-// 	map_y = (int)((y - epsilon) / TILESIZE);
-
-// 	if (map_x < 0 || map_y < 0 || map_x >= (int)ft_strlen(map->cmap[map_y])
-// 		|| map_y >= (int)map->row)
-// 		return (0); // Outside map is wall
-// 	return (map->cmap[map_y][map_x] == '1');
-// }
-
-int	wall_existance(t_map *map, double x, double y, int index)
+int	wall_existance_h(t_map *map, double x, double y, int index)
 {
 	int	grid_x;
 	int	grid_y;
 
 	grid_x = (int)((x) / TILESIZE);
 	grid_y = (int)((y) / TILESIZE);
-	map->ray[index].is_door = 0;
+	map->ray[index].is_hor_door = 0;
 	if (!map || grid_y < 0 || grid_x < 0 || grid_y >= (int)map->row 
 		|| !map->cmap[grid_y] || grid_x >= (int)ft_strlen(map->cmap[grid_y]))
 		return (0);
 	else if (map->cmap[grid_y][grid_x] == '1' || map->cmap[grid_y][grid_x] == 'D')
 	{
 		if (map->cmap[grid_y][grid_x] == 'D')
-			map->ray[index].is_door = 1;
+			map->ray[index].is_hor_door = 1;
+			
+		return (0);
+	}
+	else
+		return (1);
+}
+
+int	wall_existance_v(t_map *map, double x, double y, int index)
+{
+	int	grid_x;
+	int	grid_y;
+
+	grid_x = (int)((x) / TILESIZE);
+	grid_y = (int)((y) / TILESIZE);
+	map->ray[index].is_ver_door = 0;
+	if (!map || grid_y < 0 || grid_x < 0 || grid_y >= (int)map->row 
+		|| !map->cmap[grid_y] || grid_x >= (int)ft_strlen(map->cmap[grid_y]))
+		return (0);
+	else if (map->cmap[grid_y][grid_x] == '1' || map->cmap[grid_y][grid_x] == 'D')
+	{
+		if (map->cmap[grid_y][grid_x] == 'D')
+			map->ray[index].is_ver_door = 1;
 			
 		return (0);
 	}
@@ -87,7 +92,7 @@ double	horizontal_distance(t_map *map, t_ray *ray, int index)
 		ray->step_y = TILESIZE;
 	while (y >= 0 && y <= map->row * TILESIZE && x >= 0 && x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
 	{
-		if (!wall_existance(map, x, y, index))
+		if (!wall_existance_h(map, x, y, index))
 			return (ray->hor_hit_x = x, ray->hor_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		if (!ray->f_point_h)
 			x = horizontal_helper_y(*ray, &y, y_f, x_f);

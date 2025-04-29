@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:19:44 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 17:35:30 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:29:07 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void	draw_rectangle(t_map *map, double begin, double end, int x, int color)
-{
-	int	y;
-	// int	color;
-
-	// color = 0x808080;
-	y = 0;
-	while (y < map->height)
-	{
-		if (y >= begin && y <= end)
-			mlx_put_pixel(map->img, x, y, color);
-		y++;
-	}
-}
 
 void	render_wall(t_map *map, t_ray ray, int x)
 {
@@ -49,11 +34,10 @@ void	render_wall(t_map *map, t_ray ray, int x)
 	{
 		if (y >= 0 && y < map->height)
 		{
-			tex_y = ((y - begin) * map->text_buffer[ray.texture]->height) / (end - begin);
-			color = get_texture_pixel(map, ray, tex_y);	
-			if (x >=0)
-				mlx_put_pixel(map->img, x, y, color);
-			
+			tex_y = ((y - begin) * map->text_buffer[ray.texture]->height)
+				/ (end - begin);
+			color = get_texture_pixel(map, ray, tex_y);
+			mlx_put_pixel(map->img, x, y, color);
 		}
 		y++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixels_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:37:01 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 21:02:25 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:35:34 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,11 @@ int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 	int			index;
 	uint32_t	color;
 	t_texture	*texture;
-
-	texture = map->text_buffer[ray.texture];
+	
+	if (ray.is_door)
+		texture = map->door_texture;
+	else
+		texture = map->text_buffer[ray.texture];
 	if (!texture || !texture->img || !texture->img->pixels)
 		return (0xFF000000);
 	tex_x = ray.texture_x;

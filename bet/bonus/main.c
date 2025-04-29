@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 00:46:56 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:02:48 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int main(int ac, char **av)
 		map.player.rot_angle = M_PI;
 	// draw_player(&map, img);
 	// draw_mini_map(&map);
-
-
 	load_textures(&map);
 	set_rays_angle(&map);
 	// animate_sprite(&map);

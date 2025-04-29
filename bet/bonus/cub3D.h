@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 23:20:47 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:44:38 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ typedef struct s_ray
 	bool f_point_h;
 	bool f_point_v;
 	int is_door;
+	int is_ver_door;
+	int is_hor_door;
 
 	int	hit_vertical;
 	double	wall_x;
@@ -218,7 +220,8 @@ void set_rays_angle(t_map *map);
 double horizontal_distance(t_map *map, t_ray *ray, int index);
 void ray_look_direction(double *angle, t_ray *ray);
 double vertical_distance(t_map *map, t_ray *ray, int index);
-int wall_existance(t_map *map, double x, double y, int index);
+int wall_existance_h(t_map *map, double x, double y, int index);
+int	wall_existance_v(t_map *map, double x, double y, int index);
 void render_wall(t_map *map, t_ray ray, int x);
 void alloc_check(t_map *map, t_identifier *new, char *line);
 void invalid_map_2(char *message, t_map *map, char *line, char *pureline);

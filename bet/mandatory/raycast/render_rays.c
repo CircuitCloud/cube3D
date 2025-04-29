@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 20:51:51 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:21:52 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,50 +31,6 @@ void draw_floor_ceil(t_map *map)
 	}
 }
 
-// void draw_floor_ceil(t_map *map)
-// {
-// 	int i;
-// 	int j;
-// 	int tex_x;
-// 	int	tex_y;
-// 	uint32_t color;
-// 	t_ray dummy_ray;
-
-// 	i = 0;
-// 	j  = 0;
-// 	while (i < map->height)
-// 	{
-// 		j = 0;
-// 		while (j < map->width)
-// 		{
-// 			if (i < map->height / 2)//dyel celling
-// 			{
-// 				tex_x = j % map->ceiling_texture->width;
-// 				tex_y = i % map->ceiling_texture->height;
-// 				dummy_ray.texture_x = tex_x;
-// 				// if(ft_strcmp(map->id->identifier, "C") && map->id->colors[0])
-// 				// 	color = get_pixel_color(NULL, tex_x, tex_y, map);
-// 				// else
-// 				color = 0x000000;
-// 					// color = get_pixel_color(map->ceiling_texture, tex_x, tex_y, map);
-// 				mlx_put_pixel(map->img, j, i, color);
-// 			}
-// 			else
-// 			{
-// 				tex_x = j % map->floor_texture->width;
-// 				tex_y = (i - map->height / 2) % map->floor_texture->height;
-// 				dummy_ray.texture_x = tex_x;
-// 				color = 0x000000;
-// 				// color = get_pixel_color(map->floor_texture, tex_x, tex_y);
-// 				mlx_put_pixel(map->img, j, i, color);
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-
 void	check_distance(t_map *map, int i, double distance1)
 {
 	if (map->ray[i].distance > distance1)
@@ -98,7 +54,6 @@ void	check_distance(t_map *map, int i, double distance1)
 void	set_rays_angle(t_map *map)
 {
 	int		i;
-	double	fr_angle;
 	double	agl;
 	double	distance1;
 	int		x;
@@ -106,13 +61,11 @@ void	set_rays_angle(t_map *map)
 
 	i = 0;
 	map->rays_number = map->width;
-	fr_angle = map->player.rot_angle - (FOV / 2);
 	draw_floor_ceil(map);
-	// draw_debug_player_dot(map);
 	while (i < map->rays_number)
 	{
 		if (i == 0)
-			agl = fr_angle;
+			agl = map->player.rot_angle - (FOV / 2);
 		else
 			agl += ANGLE;
 		map->ray[i].ray_angle = agl;
@@ -123,5 +76,5 @@ void	set_rays_angle(t_map *map)
 		texture_coord(map, i);
 		i++;
 	}
-		render_pov(map);
+	render_pov(map);
 }

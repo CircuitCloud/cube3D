@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 21:04:48 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:43:57 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	check_distance(t_map *map, int i, double distance1)
 		map->ray[i].hit_vertical = 1;
 		map->ray[i].wall_hit_x = map->ray[i].ver_hit_x;
 		map->ray[i].wall_hit_y = map->ray[i].ver_hit_y;
+		map->ray[i].is_door = map->ray[i].is_ver_door;
 		// printf("HORizo: dist=%.2f, hit=(%.2f, %.2f)\n", map->ray[i].distance, map->ray[i].hor_hit_x, map->ray[i].hor_hit_y);
 	}
 	else
@@ -89,6 +90,7 @@ void	check_distance(t_map *map, int i, double distance1)
 		map->ray[i].hit_vertical = 0;
 		map->ray[i].wall_hit_x = map->ray[i].hor_hit_x;
 		map->ray[i].wall_hit_y = map->ray[i].hor_hit_y;
+		map->ray[i].is_door = map->ray[i].is_hor_door;
 		// printf("VER: dist=%.2f, hit=(%.2f, %.2f)\n", distance1, map->ray[i].ver_hit_x, map->ray[i].ver_hit_y);
 
 	}
@@ -107,7 +109,6 @@ void	set_rays_angle(t_map *map)
 	map->rays_number = map->width;
 	fr_angle = map->player.rot_angle - (FOV / 2);
 	draw_floor_ceil(map);
-	// draw_debug_player_dot(map);
 	while (i < map->rays_number)
 	{
 		if (i == 0)

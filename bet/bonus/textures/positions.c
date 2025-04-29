@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   positions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 19:38:53 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:07:42 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	texture_coord(t_map *map, int i)
 	t_texture	*tex;
 
 	which_texture(map, i);
-	tex = map->text_buffer[map->ray[i].texture];
+	if (map->ray[i].is_door)
+		tex = map->door_texture;
+	else
+		tex = map->text_buffer[map->ray[i].texture];
 	if (map->ray[i].hit_vertical)
 		hit_coord = map->ray[i].wall_hit_y;
 	else

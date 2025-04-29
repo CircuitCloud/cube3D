@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/27 23:55:50 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:38:39 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,35 @@ int	find_wall(t_map *map, double x, double y)
 		return (1);
 	return (0);
 }
+
+int player_in_door(t_map *map)
+{
+	int i;
+	int j;
+	int lenx;
+	
+	i = 0;
+	if (map && map->cmap)
+	{
+		while (i < map->row && map->cmap[i])
+		{
+			j = 0;
+			lenx = ft_strlen(map->cmap[i]);
+			while (j < lenx && map->cmap[i][j])
+			{
+				if (map->cmap[i][j] == 'o' && i == (int)(map->player.move_y / TILESIZE) && j == (int)(map->player.move_x / TILESIZE))
+				{
+					write(2, "can't close the doors (player in a door position)\n", 50);//add ibda3
+					return (1);
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
 
 void open_close_doors(t_map *map, int flag)
 {
@@ -90,7 +119,7 @@ void handle_key(t_map *map)
 		ft_cleanup(map), exit(0);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_O))
 		open_close_doors(map, 0);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
+	if (mlx_is_key_down(map->mlx, MLX_KEY_C) && !player_in_door(map))
 		open_close_doors(map, 1);
 }
 

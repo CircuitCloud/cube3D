@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 01:15:50 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 16:11:59 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:29:24 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	draw_tile_pixels(mlx_image_t *img, int x, int y, int color)
 	
 	i = 0;
 	j = 0;
-	while (i < TILESIZE * MINIMAP_SCALE)
+	while (i < TILESIZE * MP_SCALE) //MINIMAP_SCALE undeclared
 	{
 		j = 0;
-		while (j < TILESIZE * MINIMAP_SCALE)
+		while (j < TILESIZE * MP_SCALE) // MINIMAP_SCALE undeclared
 		{
 			mlx_put_pixel(img, x + j, y + i, color);
 			j++;
