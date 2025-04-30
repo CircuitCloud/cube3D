@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:48:12 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:39:25 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,18 +170,19 @@ typedef struct s_map
 }	t_map;
 
 t_map			parse(char *mapname);
-t_identifier	*cub_lstnew();
+t_identifier	*cub_lstnew(void);
 t_identifier	*free_linked_list(t_identifier *id, int flag);
-void			bad_alloc(t_map* map);
+void			bad_alloc(t_map *map);
 void			free_maps(t_map *map, int flag);
-void			fd_check(char* name, t_map *m, int flag);
-void			invalid_map(char *ms, t_map *map, t_identifier *new, char *line);
-void			parse_textures(char *filename, t_map* map);
-void			parse_map(char *filename, t_map* map);
-void			p_directions(t_map* map, int n_players);
+void			fd_check(char *name, t_map *m, int flag);
+void			invalid_map(char *ms, t_map *map, t_identifier *new, 
+					char *line);
+void			parse_textures(char *filename, t_map *map);
+void			parse_map(char *filename, t_map *map);
+void			p_directions(t_map *map, int n_players);
 void			cub_lstadd_back(t_identifier **lst, t_identifier *new);
 void			free_splited(char **splited);
-void			parse_textures_util(t_map *map, int i,char* line);
+void			parse_textures_util(t_map *map, int i, char *line);
 char			*convert_to_space(char *str);
 int				parse_line(char *line, int row, int rw, int len);
 int				ft_strcmp(char *dest, char *src);
@@ -192,7 +193,8 @@ void			set_rays_angle(t_map *map);
 void			ray_look_direction(double *angle, t_ray *ray);
 void			render_wall(t_map *map, t_ray ray, int x);
 void			alloc_check(t_map *map, t_identifier *new, char *line);
-void			invalid_map_2(char *message, t_map *map, char *line, char *pureline);
+void			invalid_map_2(char *message, t_map *map, char *line, 
+					char *pureline);
 void			invalid_map_3(char *message, t_map *map, int flag);
 double			horizontal_distance(t_map *map, t_ray *ray, int index);
 double			vertical_distance(t_map *map, t_ray *ray, int index);

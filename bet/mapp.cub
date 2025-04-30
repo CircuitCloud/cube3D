@@ -1,11 +1,17 @@
-F 76,76,76
-C 99,99,99
+F 139,69,19
+C 245,245,220
 
-NO textures/sss.png
-SO textures/openart-image_xSgCUO_X_1744750066492_raw.png
-WE textures/openart-image_x4m0LRrS_1744751156095_raw.png
-EA textures/openart-image_KYLzW6Xo_1744749622223_raw.png
+NO textures/tile003.png
+SO textures/vv.png
+WE textures/openart-image_KYLzW6Xo_1744749622223_raw.png
+EA textures/maraudersmap.png
 
-111111
-10W001
-111111
+111111111111111
+100000000000001
+100000000001111
+1001011000101
+1010000000011
+100000000001
+100000000001
+10000000E1001
+111111111111

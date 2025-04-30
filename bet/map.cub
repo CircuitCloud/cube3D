@@ -1,11 +1,11 @@
 
-NO textures/p.png
-SO textures/openart-image_xSgCUO_X_1744750066492_raw.png
-WE textures/openart-image_x4m0LRrS_1744751156095_raw.png
-EA textures/openart-image_KYLzW6Xo_1744749622223_raw.png
+F 139,69,19
+C 245,245,220
 
-F	220,100,0
-C	2,30,46
+NO textures/tile003.png
+SO textures/vv.png
+WE textures/openart-image_KYLzW6Xo_1744749622223_raw.png
+EA textures/maraudersmap.png
                
        11111111111111111111111111
        100000011000000000000111

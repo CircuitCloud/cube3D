@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:54:23 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:49 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:36:16 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	check_character(char c, int len, int i)
 {
 	if ((i == 0 || i == len - 1) && (c != '1' && c != ' ' && c != '\t'))
 		return (1);
-	else if (c != '1' && c != 'D' && c != ' ' && c != '\t' && c != '0' && c != 'N'
-		&& c != 'S' && c != 'W' && c != 'E')
+	else if (c != '1' && c != 'D' && c != ' ' && c != '\t' && c != '0' 
+		&& c != 'N' && c != 'S' && c != 'W' && c != 'E')
 		return (1);
 	return (0);
 }

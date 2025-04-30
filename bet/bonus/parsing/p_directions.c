@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_directions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:00:18 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:48 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:35:51 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	doors_check(t_map *map, int i, int j)
 		&& (map->cmap[i][j + 1] == '0' || map->cmap[i][j + 1] == 'N' 
 		|| map->cmap[i][j + 1] == 'S' || map->cmap[i][j + 1] == 'W' 
 		|| map->cmap[i][j + 1] == 'E') && (map->cmap[i][j - 1] == '0' 
-		|| map->cmap[i][j -  1] == 'N' || map->cmap[i][j -  1] == 'S' 
-		|| map->cmap[i][j -  1] == 'W' || map->cmap[i][j -  1] == 'E'))
-			return (0);
+		|| map->cmap[i][j - 1] == 'N' || map->cmap[i][j - 1] == 'S' 
+		|| map->cmap[i][j - 1] == 'W' || map->cmap[i][j - 1] == 'E'))
+		return (0);
 	else if ((map->cmap[i - 1][j] == '0' || map->cmap[i - 1][j] == 'N' 
 			|| map->cmap[i - 1][j] == 'S' || map->cmap[i - 1][j] == 'W' 
 			|| map->cmap[i - 1][j] == 'E') && (map->cmap[i + 1][j] == '0' 
 			|| map->cmap[i + 1][j] == 'N' || map->cmap[i + 1][j] == 'S' 
 			|| map->cmap[i + 1][j] == 'W' || map->cmap[i + 1][j] == 'E')
 		&& map->cmap[i][j + 1] == '1' && map->cmap[i][j - 1] == '1')
-			return (0);
+		return (0);
 	return (1);
 }
 

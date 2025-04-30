@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixels_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:37:01 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 21:01:46 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:30:12 by cahaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ uint32_t	get_pixel_color(t_texture *texture, int x, int y, t_map *map)
 	uint8_t	b;
 	uint8_t	a;
 
+	(void)map;
+	a = 0;
+	r = 0;
+	g = 0;
+	b = 0;
 	if (texture)
 	{
 		index = (y * texture->width + x) * 4;
@@ -79,7 +84,6 @@ uint32_t	get_pixel_color(t_texture *texture, int x, int y, t_map *map)
 int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 {
 	int			tex_x;
-	int			index;
 	uint32_t	color;
 	t_texture	*texture;
 
