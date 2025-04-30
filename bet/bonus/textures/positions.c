@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   positions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 01:47:11 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/29 15:07:42 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:33:04 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 void	which_texture(t_map *map, int index)
 {
@@ -46,10 +46,10 @@ void	texture_coord(t_map *map, int i)
 	else
 		hit_coord = map->ray[i].wall_hit_x;
 	wall_x = fmod(hit_coord, TILESIZE) / TILESIZE;
-	// if (wall_x < 0.01)//n9dr nmss7ha
-	// 	wall_x = 0.01;
-	// if (wall_x > 0.99)
-	// 	wall_x = 0.99;
+	if (wall_x < 0.01)
+		wall_x = 0.01;
+	if (wall_x > 0.99)
+		wall_x = 0.99;
 	map->ray[i].wall_x = wall_x;
 	map->ray[i].texture_x = (int)(wall_x * tex->width);
 	if ((map->ray[i].hit_vertical && cos(map->ray[i].ray_angle) > 0) 

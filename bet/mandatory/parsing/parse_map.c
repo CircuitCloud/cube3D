@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:49:29 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/25 11:05:28 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/29 18:20:59 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	parse_map(char *filename, t_map *map)
 	ft_bzero(map->cmap, sizeof(char *) * (map->row + 1));
 	bad_alloc(map);
 	line = get_next_line(map->fd);
-	while (line)
+	while (line) 
 	{
 		parse_map_helper(map, &skiped, &j, line);
 		free(line);

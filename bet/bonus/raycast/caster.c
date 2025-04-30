@@ -6,11 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 11:40:55 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/24 03:48:17 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:55 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 double	periodic_angle(double angle)
 {

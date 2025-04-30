@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   invalid_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:56:27 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/25 11:43:03 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:46 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 t_identifier	*free_linked_list(t_identifier *id, int flag)
 {

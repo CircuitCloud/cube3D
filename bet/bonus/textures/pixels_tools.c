@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pixels_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 23:37:01 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/29 15:35:34 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:33:02 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
-
-
+#include "../cub3D_bonus.h"
 
 void	fill_c_f_arrays(t_map *map)
 {
@@ -84,7 +82,7 @@ int	get_texture_pixel(t_map *map, t_ray ray, int tex_y)
 	int			index;
 	uint32_t	color;
 	t_texture	*texture;
-	
+
 	if (ray.is_door)
 		texture = map->door_texture;
 	else

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   convert_space.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 18:07:02 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/23 15:15:47 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:40 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 char	*convert_to_space(char *str)
 {

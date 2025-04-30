@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   p_directions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:00:18 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/29 13:11:30 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:48 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 int	doors_check(t_map *map, int i, int j)
 {

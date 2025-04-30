@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/29 14:02:48 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:33:33 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void ll(void)
 {
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 
 	x =0 ;
 	y = 0;
-	// atexit(ll);
+	atexit(ll);
 	if (ac == 2)
 	{
 		if (ft_strcmp(".cub", ft_strrchr(av[1], '.')))
@@ -53,6 +53,8 @@ int main(int ac, char **av)
 	}
 	map.width = WIDTH;
 	map.height = HEIGHT;
+	map.fov = (60 * (M_PI / 180));
+	map.fov_angle = (map.fov / (RAYS_NUMBER - 1));
 	map.mlx = mlx_init(WIDTH, HEIGHT, "cub3D bawnis", 1);
 	if (!map.mlx)
         return (printf("failed to init mlx\n"), 1);
@@ -81,7 +83,6 @@ int main(int ac, char **av)
 	mlx_loop_hook(map.mlx, ft_hook_mouse, &map);
 	// mlx_loop_hook(map.mlx, animate_sprite, &map);
 	mlx_loop(map.mlx);
-	invalid_map_3("finished\n", &map, 1);
 	ft_cleanup(&map);
 	return (0);
 }

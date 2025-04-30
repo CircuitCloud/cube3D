@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:14:33 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 16:16:35 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:01:53 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ void	free_textures(t_map *map)
 void	ft_cleanup(t_map *map)
 {
 	free_textures(map);
-	//free_ray
-	mlx_delete_image(map->mlx, map->img);
+	if (map->ray)
+		free(map->ray);
+	invalid_map_3("cleanup", map, 1);
+	if (map->img)
+		mlx_delete_image(map->mlx, map->img);
 	mlx_close_window(map->mlx);
 }

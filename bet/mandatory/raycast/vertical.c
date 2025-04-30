@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/26 16:05:29 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/29 19:34:26 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	vertical_helper_x(t_ray ray, double *y, double *x)
 	(*y) += (ray.step_x * tan(ray.ray_angle));
 }
 
+void	steep_x_check(t_ray *ray)
+{
+	if (ray->right)
+		ray->step_x = TILESIZE;
+	else
+		ray->step_x = -TILESIZE;
+}
+
 double	vertical_distance(t_map *map, t_ray *ray)
 {
 	double	x;
@@ -42,19 +50,19 @@ double	vertical_distance(t_map *map, t_ray *ray)
 	y_f = map->player.move_y;
 	x = x_f;
 	y = y_f;
-	if (ray->right)
-		ray->step_x = TILESIZE;
-	else
-		ray->step_x = -TILESIZE;
-	while (y >= 0 && y < map->row * TILESIZE && x >= 0 && x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
+	steep_x_check(ray);
+	while (y >= 0 && y < map->row * TILESIZE && x >= 0 
+		&& x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
 	{
 		if (!wall_existance(map, x, y))
-			return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+			return (ray->ver_hit_x = x, ray->ver_hit_y = y, 
+				sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		if (!ray->f_point_v)
 			y = vertical_helper_y(*ray, &x, y_f, x_f);
 		else
 			vertical_helper_x(*ray, &y, &x);
 		ray->f_point_v = true; 
 	}
-	return (ray->ver_hit_x = x, ray->ver_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+	return (ray->ver_hit_x = x, ray->ver_hit_y = y, 
+		sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 }

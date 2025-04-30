@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/28 22:15:14 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:36:57 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 
 	x =0 ;
 	y = 0;
-	// atexit(ll);
+	atexit(ll);
 	if (ac == 2)
 	{
 		if (ft_strcmp(".cub", ft_strrchr(av[1], '.')))
@@ -41,6 +41,8 @@ int main(int ac, char **av)
 	}
 	map.width = WIDTH;
 	map.height = HEIGHT;
+	map.fov = (60 * (M_PI / 180));
+	map.fov_angle = (map.fov / (RAYS_NUMBER - 1));
 	map.mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 	if (!map.mlx)
         return (printf("failed to init mlx\n"), 1);
@@ -69,7 +71,6 @@ int main(int ac, char **av)
 	set_rays_angle(&map);
 	mlx_loop_hook(map.mlx, update_player_loop, &map);
 	mlx_loop(map.mlx);
-	invalid_map_3("finished\n", &map, 1);
 	ft_cleanup(&map);
 	return (0);
 }

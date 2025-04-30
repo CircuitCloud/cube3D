@@ -6,11 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:14:33 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 19:25:50 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:33:00 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 void	free_texture(t_texture *texture)
 {
@@ -43,16 +43,34 @@ void	free_textures(t_map *map)
 	}
 	if (map->player_texture)
 		free_texture(map->player_texture);
-	if (map->ceiling_texture)
-		free_texture(map->ceiling_texture);
-	if (map->floor_texture)
-		free_texture(map->floor_texture);
+	if (map->door_texture)
+		free_texture(map->door_texture);
+}
+
+void	free_sprite(t_sprite *sprite)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (sprite->frames[i])
+			free_texture(sprite->frames[i]);
+		i++;
+	}
+	if (sprite->frames)
+		free(sprite->frames);
 }
 
 void	ft_cleanup(t_map *map)
 {
 	free_textures(map);
-	//free_ray
-	mlx_delete_image(map->mlx, map->img);
+	if (map->player_sprite.frames)
+		free_sprite(&map->player_sprite);
+	if (map->ray)
+		free(map->ray);
+	invalid_map_3("cleanup", map, 1);
+	if (map->img)
+		mlx_delete_image(map->mlx, map->img);
 	mlx_close_window(map->mlx);
 }

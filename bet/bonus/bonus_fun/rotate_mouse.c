@@ -6,11 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 00:18:47 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 22:45:36 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:50:53 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 void	ft_hook_mouse(void *param)
 {
@@ -20,10 +20,12 @@ void	ft_hook_mouse(void *param)
 	map = (t_map *)param;
 	if (!map || !map->mlx)
 		return ;
+	if (!map->mouse_locked)
+		return ;
 	mlx_set_cursor_mode(map->mlx, MLX_MOUSE_HIDDEN);
 	mlx_get_mouse_pos(map->mlx, &map->player.mouse_x, &map->player.mouse_y);
 	delta_x = map->player.mouse_x - (WIDTH / 2);
-	map->player.rot_angle += delta_x * ROTATION_SPEED;
+	map->player.rot_angle += delta_x * ROTATION_SPEED_MOUSE;
 	map->player.rot_angle = fmod(map->player.rot_angle, 2 * M_PI);
 	if (map->player.rot_angle < 0)
 		map->player.rot_angle += 2 * M_PI;

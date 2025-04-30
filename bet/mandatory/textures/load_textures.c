@@ -6,28 +6,28 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 19:27:08 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:01:40 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-t_texture	*load_texture(const char *path)
+t_texture	*load_texture(const char *path, t_map *map)
 {
 	t_texture	*texture;
 
 	texture = malloc(sizeof(t_texture));
 	if (!texture)
 	{
-		//freee && exit
+		ft_cleanup(map);
 		printf("Error: Failed to allocate texture\n");
 		exit(1);
 	}
 	texture->img = mlx_load_png(path);
 	if (!texture->img)
 	{
-		//freee && exitttt rys
-		printf("E4ror: ffailed to load texture %s\n", path);
+		ft_cleanup(map);
+		printf("Error: ffailed to load texture %s\n", path);
 		exit(1);
 	}
 	texture->width = texture->img->width;
@@ -40,22 +40,17 @@ int	load_walls(t_map *map)
 {
 	t_identifier	*current;
 
-	if (!map || !map->id)
-	{
-		printf("Error: map or map->id is NULL\n");
-		return (1);
-	}
 	current = map->id;
 	while (current && current->identifier)
 	{
 		if (!ft_strcmp(current->identifier, "NO"))
-			map->text_buffer[NORTH_TEXTURE] = load_texture(current->path);
+			map->text_buffer[NORTH_TEXTURE] = load_texture(current->path, map);
 		if (!ft_strcmp(current->identifier, "SO"))
-			map->text_buffer[SOUTH_TEXTURE] = load_texture(current->path);
+			map->text_buffer[SOUTH_TEXTURE] = load_texture(current->path, map);
 		if (!ft_strcmp(current->identifier, "WE"))
-			map->text_buffer[WEST_TEXTURE] = load_texture(current->path);
+			map->text_buffer[WEST_TEXTURE] = load_texture(current->path, map);
 		if (!ft_strcmp(current->identifier, "EA"))
-			map->text_buffer[EAST_TEXTURE] = load_texture(current->path);
+			map->text_buffer[EAST_TEXTURE] = load_texture(current->path, map);
 		current = current->next;
 	}
 	return (0);
@@ -64,9 +59,6 @@ int	load_walls(t_map *map)
 void	load_textures(t_map *map)
 {
 	load_walls(map);
-	map->player_texture = load_texture("textures/tile0-removebg-preview.png");
-	map->ceiling_texture 
-		= load_texture("textures/openart-image_6sCiqmgt_1744752491452_raw.png");
-	map->floor_texture 
-		= load_texture("textures/openart-image_x49WIgMa_1744751845454_raw.png");
+	map->player_texture = load_texture("textures/tile0-removebg-preview.png", 
+			map);
 }

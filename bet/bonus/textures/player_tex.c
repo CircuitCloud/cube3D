@@ -6,11 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 06:20:04 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 19:37:04 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:33:03 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 void	render_pov_tex(t_map *map, int screen_x, int screen_y)
 {
@@ -46,8 +46,6 @@ void	render_pov(t_map *map)
 	int	screen_x;
 	int	screen_y;
 
-	if (!map || !map->img)
-		return (printf("Error: NULL pointer in render_gun\n"), exit(1));
 	screen_x = (map->width / 2) - (map->player_sprite.frames
 		[map->player_sprite.current_frame]->width / 2);
 	screen_y = map->height / 1.5; 

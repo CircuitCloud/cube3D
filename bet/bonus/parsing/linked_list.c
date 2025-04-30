@@ -6,11 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 13:46:51 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/16 19:03:08 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:47 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 t_identifier	*cub_lstnew(void)
 {

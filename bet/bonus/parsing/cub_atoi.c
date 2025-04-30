@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 07:56:30 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/24 10:29:22 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:41 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 int	cub_atoi(char *original, int *err)
 {

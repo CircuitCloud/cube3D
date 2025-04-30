@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 06:20:04 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/28 18:20:14 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/29 19:00:40 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	render_pov(t_map *map)
 	int	screen_x;
 	int	screen_y;
 
-	if (!map || !map->img)
-		return (printf("Error: NULL pointer in render_gun\n"), exit(1));
 	screen_x = (map->width / 2) - (map->player_texture->width / 2);
 	screen_y = map->height / 1.5; 
 	if (screen_x < 0)

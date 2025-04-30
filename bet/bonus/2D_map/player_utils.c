@@ -1,68 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/30 00:27:01 by ykamboua         ###   ########.fr       */
+/*   Created: 2025/04/29 20:25:58 by ykamboua          #+#    #+#             */
+/*   Updated: 2025/04/30 00:32:35 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
-
-int	find_wall(t_map *map, double x, double y)
-{
-	double	padding;
-	int		left;
-	int		right;
-	int		top;
-	int		bottom;
-
-	padding = 5;
-	left = (int)((x - padding) / TILESIZE);
-	right = (int)((x + padding) / TILESIZE);
-	top = (int)((y - padding) / TILESIZE);
-	bottom = (int)((y + padding) / TILESIZE);
-	if (!map || !map->cmap)
-		return (1);
-	if (top < 0 || left < 0 || bottom >= map->height 
-		|| right >= (int)ft_strlen(map->cmap[bottom]))
-		return (1);
-	if (map->cmap[top][left] == '1' || map->cmap[top][right] == '1' ||
-		map->cmap[bottom][left] == '1' || map->cmap[bottom][right] == '1')
-		return (1);
-	return (0);
-}
-
-void	handle_key(t_map *map)
-{
-	if (!map || !map->mlx)
-		return ;
-	map->player.turn_direc = 0;
-	map->player.walk_direc = 0;
-	map->player.strafe_direc = 0;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->player.turn_direc = -1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->player.turn_direc = 1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_W) 
-		|| mlx_is_key_down(map->mlx, MLX_KEY_UP))
-		map->player.walk_direc = 1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_S) 
-		|| mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-		map->player.walk_direc = -1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
-		map->player.strafe_direc = -1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-		map->player.strafe_direc = 1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
-	{
-		ft_cleanup(map);
-		exit(0);
-	}
-}
+#include "../cub3D_bonus.h"
 
 void	update_movements(t_map *map)
 {
@@ -112,11 +60,11 @@ void	redraw_map(t_map *map)
 		if (!map->img)
 		{
 			ft_cleanup(map);
-			printf("Error: Failed to create new image\n");
 			exit(1);
 		}
-		mlx_image_to_window(map->mlx, map->img, 0, 0);
 		set_rays_angle(map);
+		draw_mini_map(map);
+		mlx_image_to_window(map->mlx, map->img, 0, 0);
 	}
 }
 

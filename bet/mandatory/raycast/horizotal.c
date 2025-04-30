@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizotal.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:24:41 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/29 15:18:48 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/29 19:31:24 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,14 @@ void	horizontal_helper_x(t_ray ray, double *y, double *x)
 	(*x) += (ray.step_y / tan(ray.ray_angle));
 }
 
+void	steep_y_check(t_ray *ray)
+{
+	if (ray->up)
+		ray->step_y = -TILESIZE;
+	else
+		ray->step_y = TILESIZE;
+}
+
 double	horizontal_distance(t_map *map, t_ray *ray)
 {
 	double	x;
@@ -58,19 +66,19 @@ double	horizontal_distance(t_map *map, t_ray *ray)
 	y_f = map->player.move_y;
 	x = x_f;
 	y = y_f;
-	if (ray->up)
-		ray->step_y = -TILESIZE;
-	else
-		ray->step_y = TILESIZE;
-	while (y >= 0 && y <= map->row * TILESIZE && x >= 0 && x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
+	steep_y_check(ray);
+	while (y >= 0 && y <= map->row * TILESIZE && x >= 0 
+		&& x < ft_strlen(map->cmap[((int)y / TILESIZE)]) * TILESIZE)
 	{
 		if (!wall_existance(map, x, y))
-			return (ray->hor_hit_x = x, ray->hor_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+			return (ray->hor_hit_x = x, ray->hor_hit_y = y, 
+				sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 		if (!ray->f_point_h)
 			x = horizontal_helper_y(*ray, &y, y_f, x_f);
 		else
 			horizontal_helper_x(*ray, &y, &x);
 		ray->f_point_h = true; 
 	}
-	return (ray->hor_hit_x = x, ray->hor_hit_y = y, sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
+	return (ray->hor_hit_x = x, ray->hor_hit_y = y, 
+		sqrt(pow(x - x_f, 2) + pow(y - y_f, 2)));
 }

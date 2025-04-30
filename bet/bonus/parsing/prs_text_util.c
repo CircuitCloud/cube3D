@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prs_text_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 08:14:57 by cahaik            #+#    #+#             */
-/*   Updated: 2025/03/25 10:12:27 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/04/30 00:32:54 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../cub3D_bonus.h"
 
 int	comp_dir(t_identifier *id, char *s)
 {
