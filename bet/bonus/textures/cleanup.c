@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:14:33 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/05/01 18:05:43 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:18:09 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ void	ft_cleanup(t_map *map)
 		free_sprite(&map->player_sprite);
 	if (map->ray)
 		free(map->ray);
-	invalid_map_3("cleanup", map, 1);
+	invalid_map_3("Cleanup done 🧼🧹\n", map, 1);
 	if (map->img)
 		mlx_delete_image(map->mlx, map->img);
 	mlx_close_window(map->mlx);
+	system("killall afplay");
 }

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/05/01 18:11:57 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 23:11:31 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define EAST_TEXTURE 2
 # define WEST_TEXTURE 3
 # define DOOR_TEXTURE 4
-# define MP_TILE_SPACE 1
+# define MP_TILE_SPACE 0
 # define MP_SCALE 0.1
 # define MP_OFFSET_X 20
 # define MP_OFFSET_Y 20

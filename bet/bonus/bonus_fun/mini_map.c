@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 06:23:19 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/05/01 17:46:59 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 23:11:57 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	draw_mini_player(t_map *map)
 	draw_filled_circle(map->img, ppx, ppy, color);
 }
 
+void	cant_draw_mini_map(t_map *map)
+{
+	ft_cleanup(map);
+	printf("Error: Unable to load the minimap. Map size exceeds the limit🤏\n");
+	exit(1);
+}
 void	draw_mini_map(t_map *map)
 {
 	uint32_t	color;
@@ -35,11 +41,15 @@ void	draw_mini_map(t_map *map)
 	int			py;
 
 	y = -1;
+	if(map->row > 100)
+		cant_draw_mini_map(map);
 	while (++y < (int)map->row)
 	{
 		x = -1;
 		while (++x < (int)ft_strlen(map->cmap[y]))
 		{
+			if((int)ft_strlen(map->cmap[y])> 100)
+				cant_draw_mini_map(map);
 			px = MP_OFFSET_X + x * TILESIZE * MP_SCALE + x * MP_TILE_SPACE;
 			py = MP_OFFSET_Y + y * TILESIZE * MP_SCALE + y * MP_TILE_SPACE;
 			if (map->cmap[y][x] == '1')

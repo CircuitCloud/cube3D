@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/05/01 18:13:54 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 21:55:27 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	main_helper(t_map *map)
 	map->fov = (60 * (M_PI / 180));
 	map->fov_angle = (map->fov / (map->width - 1));
 	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D BONUS", 0);
-	map->mouse_locked = 1;
+	map->mouse_locked = 0;
 	if (!map->mlx)
 	{
 		invalid_map_3("failed to init mlx\n", map, 1);
@@ -72,6 +72,7 @@ int	main(int ac, char **av)
 	}
 	else
 		return (write(1, "Error:\n**PARAMETERS ERROR**\n", 28), 1);
+	system("afplay textures/songCub.mp3 &");
 	main_helper(&map);
 	map.ray = malloc(sizeof(t_ray) * map.width);
 	load_textures(&map);
