@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 08:38:44 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/30 01:28:21 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:21:40 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	load_sprite_frames(t_map *map)
 	char	*paths[4];
 
 	i = 0;
-	paths[0] = "textures/s0.png";
-	paths[1] = "textures/s1.png";
-	paths[2] = "textures/s2.png";
-	paths[3] = "textures/s3.png";
+	paths[0] = "textures/t0.png";
+	paths[1] = "textures/t1.png";
+	paths[2] = "textures/t2.png";
+	paths[3] = "textures/t3.png";
 	map->player_sprite.frames = malloc(sizeof(t_texture *) * 4);
 	if (!map->player_sprite.frames)
 	{

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 08:14:57 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:54 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 18:45:15 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	comp_dir(t_identifier *id, char *s)
 	return (0);
 }
 
-char	**colors_helper(char *line, int *commas, int *i)
+char	**colors_helper(char *line, int *commas, int *i, char c)
 {
 	int		j;
 	char	*str;
 	char	**split_numbers;
 
 	j = 0;
-	str = ft_strchr(line, ' ');
+	str = ft_strchr(line, c) + 1;
 	while (str && str[j])
 	{
 		if (str[j] == ',')
@@ -54,7 +54,7 @@ void	colors_(t_map *map, t_identifier *new, char *line)
 	commas = 0;
 	map->split_numbers = NULL;
 	new->identifier = ft_strdup(map->splited[0]);
-	map->split_numbers = colors_helper(line, &commas, &i);
+	map->split_numbers = colors_helper(line, &commas, &i, map->splited[0][0]);
 	if (commas != 2 || i-- != 3)
 		invalid_map(COMMAS_NUMBER, map, new, line);
 	alloc_check(map, new, line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 12:26:25 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:15:10 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	main_helper(t_map *map)
 	map->width = WIDTH;
 	map->height = HEIGHT;
 	map->fov = (60 * (M_PI / 180));
-	map->fov_angle = (map->fov / (RAYS_NUMBER - 1));
+	map->fov_angle = (map->fov / (map->width - 1));
 	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
 	if (!map->mlx)
 	{

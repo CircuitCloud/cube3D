@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:44:30 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 15:37:21 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define WIDTH 1024
 # define HEIGHT 1024
 # define RES 5
-# define RAYS_NUMBER 1024
 # define PLAYER_RADIUS 31.5
 # define TEXTURE_SIZE 64
 # define NUM_TEXTURES 4

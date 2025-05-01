@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/30 01:27:24 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:20:41 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	load_textures(t_map *map)
 {
 	load_walls(map);
 	map->player_texture = 
-		load_texture("textures/s0.png", map);
-	map->door_texture = load_texture("textures/bb.png", map);
+		load_texture("textures/t0.png", map);
+	map->door_texture = load_texture("textures/tile000.png", map);
 	load_sprite_frames(map);
 }

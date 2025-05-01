@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_directions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 14:00:18 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 11:35:51 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/05/01 17:45:06 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	p_directions(t_map *map, int n_players)
 	while (map && map->cmap[i])
 	{
 		j = 0;
-		while (j < ft_strlen(map->cmap[i]) && map->cmap[i][j])
+		while (j < (int)ft_strlen(map->cmap[i]) && map->cmap[i][j])
 		{
 			if (map->cmap[i][j] == 'N' || map->cmap[i][j] == 'S' || 
 				map->cmap[i][j] == 'W' || map->cmap[i][j] == 'E')

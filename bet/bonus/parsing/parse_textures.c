@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:16:02 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:52 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/04/30 16:57:06 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	little_free(t_map *map, char *line)
 		free(line);
 		line = NULL;
 	}
-	(void)map;
 	free_splited(map->splited);
 }
 

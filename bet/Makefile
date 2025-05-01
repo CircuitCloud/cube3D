@@ -6,7 +6,7 @@ CC = cc
 
 LIBFT = libft/libft.a
 
-CFLAGS =  -g #-fsanitize=address -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror 
 INCLUDES = MLX/build/libmlx42.a  MLX/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
 SRC = mandatory/main.c mandatory/parsing/parse.c mandatory/parsing/bad_alloc.c mandatory/parsing/fd_check.c \
@@ -31,10 +31,6 @@ OBJ = $(SRC:.c=.o)
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
-
-# run:
-# 	./run.sh
-
 all : $(NAME)
 
 bonus : $(BONUS)
@@ -45,7 +41,7 @@ $(NAME) : $(OBJ)
 $(BONUS) : $(BONUS_OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(BONUS) $(BONUS_OBJ) $(LIBFT)
 
-%.o : %.c mandatory/cub3D.h  getnextline/get_next_line.h
+%.o : %.c mandatory/cub3D.h bonus/cub3D_bonus.h getnextline/get_next_line.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 19:28:56 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:36 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:06:06 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	player_in_door(t_map *map)
 	i = 0;
 	if (map && map->cmap)
 	{
-		while (i < map->row && map->cmap[i])
+		while (i < (int)map->row && map->cmap[i])
 		{
 			j = 0;
 			lenx = ft_strlen(map->cmap[i]);
@@ -76,7 +76,7 @@ void	open_close_doors(t_map *map, int flag)
 	i = 0;
 	if (map && map->cmap)
 	{
-		while (i < map->row && map->cmap[i])
+		while (i < (int)map->row && map->cmap[i])
 		{
 			j = 0;
 			lenx = ft_strlen(map->cmap[i]);
@@ -94,10 +94,21 @@ void	open_close_doors(t_map *map, int flag)
 	map->door_hook = true;
 }
 
-void	exit_(t_map *map)
+void	tab_press(t_map *map)
 {
-	ft_cleanup(map);
-	exit(0);
+	static bool	tab_was_pressed;
+
+	tab_was_pressed = false;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_TAB))
+	{
+		if (!tab_was_pressed)
+		{
+			map->mouse_locked = !map->mouse_locked;
+			tab_was_pressed = true;
+		}
+	}
+	else
+		tab_was_pressed = false;
 }
 
 void	handle_key(t_map *map)
@@ -125,6 +136,5 @@ void	handle_key(t_map *map)
 		open_close_doors(map, 0);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_C) && !player_in_door(map))
 		open_close_doors(map, 1);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_TAB))
-		map->mouse_locked = !map->mouse_locked;
+	tab_press(map);
 }

@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:14:33 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/30 00:33:00 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:05:43 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	free_sprite(t_sprite *sprite)
 	}
 	if (sprite->frames)
 		free(sprite->frames);
+}
+
+void	exit_(t_map *map)
+{
+	ft_cleanup(map);
+	exit(0);
 }
 
 void	ft_cleanup(t_map *map)

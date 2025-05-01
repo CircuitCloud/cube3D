@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:39:36 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 00:32:57 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:46:14 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	set_rays_angle(t_map *map)
 	int		i;
 	double	agl;
 	double	distance1;
-	int		x;
-	int		y;
 
 	i = 0;
 	map->rays_number = map->width;

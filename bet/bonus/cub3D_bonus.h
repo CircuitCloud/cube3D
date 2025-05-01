@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cahaik <cahaik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/04/30 11:39:25 by cahaik           ###   ########.fr       */
+/*   Updated: 2025/05/01 18:06:29 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define WIDTH 1024
 # define HEIGHT 1024
 # define RES 5
-# define RAYS_NUMBER 1024
 # define PLAYER_RADIUS 31.5
 # define TEXTURE_SIZE 64
 # define NUM_TEXTURES 4 
@@ -46,13 +45,14 @@
 # define EAST_TEXTURE 2
 # define WEST_TEXTURE 3
 # define DOOR_TEXTURE 4
-# define MP_TILE_SPACE 4
+# define MP_TILE_SPACE 1
 # define MP_SCALE 0.1
 # define MP_OFFSET_X 20
-# define MP_OFFSET_Y 100
+# define MP_OFFSET_Y 20
 # define ROTATION_SPEED 0.0349
 # define ROTATION_SPEED_MOUSE 0.002
 # define MOVE_SPEED 4
+# define MAP_SIZE 100
 
 typedef struct s_identifier
 {
@@ -199,11 +199,9 @@ void			invalid_map_3(char *message, t_map *map, int flag);
 double			horizontal_distance(t_map *map, t_ray *ray, int index);
 double			vertical_distance(t_map *map, t_ray *ray, int index);
 void			draw_filled_circle(mlx_image_t *img, int cx, int cy, int color);
-void			draw_line(mlx_image_t *img, int x0, int y0, int x1, int y1, int color);
-void			draw_player(t_map *map, mlx_image_t *img);
+// void			draw_player(t_map *map, mlx_image_t *img);
 int				find_wall(t_map *map, double x, double y);
 int				get_texture_pixel(t_map *map, t_ray ray, int tex_y);
-void			draw_wall_with_texture(t_map *map, t_ray ray, int x, double begin, double end);
 void			which_texture(t_map *map, int index);
 uint32_t		get_pixel_color(t_texture *texture, int x, int y, t_map *map);
 void			load_textures(t_map *map);
@@ -224,4 +222,5 @@ void			steep_y_check(t_ray *ray);
 void			steep_x_check(t_ray *ray);
 void			handle_key(t_map *map);
 void			draw_tile_pixels(mlx_image_t *img, int x, int y, int color);
+void			exit_(t_map *map);
 #endif
