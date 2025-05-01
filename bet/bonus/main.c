@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/05/01 17:56:12 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:13:54 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	main_helper(t_map *map)
 	map->height = HEIGHT;
 	map->fov = (60 * (M_PI / 180));
 	map->fov_angle = (map->fov / (map->width - 1));
-	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D BONUS", 1);
+	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D BONUS", 0);
 	map->mouse_locked = 1;
 	if (!map->mlx)
 	{

@@ -6,16 +6,11 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:16:47 by cahaik            #+#    #+#             */
-/*   Updated: 2025/05/01 17:15:10 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:13:35 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	ll(void)
-{
-	system("leaks cub3D");
-}
 
 void	by_by(t_map *map)
 {
@@ -29,7 +24,7 @@ void	main_helper(t_map *map)
 	map->height = HEIGHT;
 	map->fov = (60 * (M_PI / 180));
 	map->fov_angle = (map->fov / (map->width - 1));
-	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 1);
+	map->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", 0);
 	if (!map->mlx)
 	{
 		invalid_map_3("failed to init mlx\n", map, 1);
@@ -55,7 +50,6 @@ int	main(int ac, char **av)
 {
 	t_map		map;
 
-	atexit(ll);
 	if (ac == 2)
 	{
 		if (ft_strcmp(".cub", ft_strrchr(av[1], '.')))

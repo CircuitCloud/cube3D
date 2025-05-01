@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:17:04 by cahaik            #+#    #+#             */
-/*   Updated: 2025/05/01 18:06:29 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/01 18:11:57 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 # define WIDTH 1024
 # define HEIGHT 1024
 # define RES 5
-# define PLAYER_RADIUS 31.5
-# define TEXTURE_SIZE 64
 # define NUM_TEXTURES 4 
 # define NORTH_TEXTURE 0
 # define SOUTH_TEXTURE 1
@@ -199,13 +197,11 @@ void			invalid_map_3(char *message, t_map *map, int flag);
 double			horizontal_distance(t_map *map, t_ray *ray, int index);
 double			vertical_distance(t_map *map, t_ray *ray, int index);
 void			draw_filled_circle(mlx_image_t *img, int cx, int cy, int color);
-// void			draw_player(t_map *map, mlx_image_t *img);
 int				find_wall(t_map *map, double x, double y);
 int				get_texture_pixel(t_map *map, t_ray ray, int tex_y);
 void			which_texture(t_map *map, int index);
 uint32_t		get_pixel_color(t_texture *texture, int x, int y, t_map *map);
 void			load_textures(t_map *map);
-void			render_player(t_map *map);
 void			ft_cleanup(t_map *map);
 void			render_pov(t_map *map);
 void			free_textures(t_map *map);
