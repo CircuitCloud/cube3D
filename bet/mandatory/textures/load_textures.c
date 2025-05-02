@@ -6,7 +6,7 @@
 /*   By: ykamboua <ykamboua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 02:24:29 by ykamboua          #+#    #+#             */
-/*   Updated: 2025/04/29 19:01:40 by ykamboua         ###   ########.fr       */
+/*   Updated: 2025/05/02 12:32:39 by ykamboua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int	load_walls(t_map *map)
 void	load_textures(t_map *map)
 {
 	load_walls(map);
-	map->player_texture = load_texture("textures/tile0-removebg-preview.png", 
+	map->player_texture = load_texture("textures/t0.png", 
 			map);
 }

@@ -1,12 +1,11 @@
+F 68,54,39
+     C     0,0,0
 
-F 139,69,19
-C 245,245,220
+NO textures/NORTH.png
+SO textures/SOUTH.png
+WE textures/EAST.png
+EA textures/WEST.png
 
-NO textures/tile003.png
-SO textures/vv.png
-WE textures/openart-image_KYLzW6Xo_1744749622223_raw.png
-EA textures/maraudersmap.png
-               
 11111111111111111111111111
 100000011000000000000111
 1111000001110000000000001

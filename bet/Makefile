@@ -18,14 +18,14 @@ SRC = mandatory/main.c mandatory/parsing/parse.c mandatory/parsing/bad_alloc.c m
 		mandatory/textures/load_textures.c mandatory/textures/positions.c mandatory/textures/player_tex.c mandatory/textures/pixels_tools.c \
 		mandatory/textures/cleanup.c
 
-BONUS_SRC = bonus/main.c bonus/parsing/parse.c bonus/parsing/bad_alloc.c bonus/parsing/fd_check.c \
-		bonus/parsing/free_maps.c bonus/parsing/invalid_map.c bonus/parsing/parse_line.c bonus/parsing/parse_map.c \
-		bonus/parsing/parse_textures.c bonus/parsing/linked_list.c bonus/parsing/p_directions.c getnextline/get_next_line_utils.c \
-		getnextline/get_next_line.c bonus/parsing/free_split.c bonus/parsing/ft_strcmp.c bonus/parsing/prs_text_util.c\
-		bonus/parsing/cub_atoi.c bonus/parsing/convert_space.c bonus/2D_map/player.c bonus/2D_map/draw_utils.c bonus/raycast/render_rays.c\
-		bonus/raycast/caster.c bonus/raycast/horizotal.c bonus/raycast/vertical.c bonus/raycast/render_wall.c\
-		bonus/textures/load_textures.c bonus/textures/positions.c bonus/textures/player_tex.c bonus/textures/pixels_tools.c \
-		bonus/textures/cleanup.c bonus/bonus_fun/mini_map.c bonus/bonus_fun/animations.c bonus/bonus_fun/rotate_mouse.c bonus/raycast/steep_check.c bonus/2D_map/player_utils.c
+BONUS_SRC = bonus/main_bonus.c bonus/parsing/parse_bonus.c bonus/parsing/bad_alloc_bonus.c bonus/parsing/fd_check_bonus.c \
+		bonus/parsing/free_maps_bonus.c bonus/parsing/invalid_map_bonus.c bonus/parsing/parse_line_bonus.c bonus/parsing/parse_map_bonus.c \
+		bonus/parsing/parse_textures_bonus.c bonus/parsing/linked_list_bonus.c bonus/parsing/p_directions_bonus.c getnextline/get_next_line_utils.c \
+		getnextline/get_next_line.c bonus/parsing/free_split_bonus.c bonus/parsing/ft_strcmp_bonus.c bonus/parsing/prs_text_util_bonus.c\
+		bonus/parsing/cub_atoi_bonus.c bonus/parsing/convert_space_bonus.c bonus/2D_map/player_bonus.c bonus/2D_map/draw_utils_bonus.c bonus/raycast/render_rays_bonus.c\
+		bonus/raycast/caster_bonus.c bonus/raycast/horizotal_bonus.c bonus/raycast/vertical_bonus.c bonus/raycast/render_wall_bonus.c\
+		bonus/textures/load_textures_bonus.c bonus/textures/positions_bonus.c bonus/textures/player_tex_bonus.c bonus/textures/pixels_tools_bonus.c \
+		bonus/textures/cleanup_bonus.c bonus/bonus_fun/mini_map_bonus.c bonus/bonus_fun/animations_bonus.c bonus/bonus_fun/rotate_mouse_bonus.c bonus/raycast/steep_check_bonus.c bonus/2D_map/player_utils_bonus.c
 
 OBJ = $(SRC:.c=.o)
 
